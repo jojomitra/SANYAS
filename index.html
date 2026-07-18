@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SANYAS → SANYA's</title>
+  <style>
+    :root {
+      --bg1: #fff7fb;
+      --bg2: #f3f0ff;
+      --card: rgba(255, 255, 255, 0.78);
+      --card-solid: #ffffff;
+      --text: #1f1930;
+      --muted: #6d6483;
+      --accent: #ff6fa1;
+      --accent2: #8d7aff;
+      --line: rgba(31, 25, 48, 0.10);
+      --shadow: 0 20px 60px rgba(71, 46, 93, 0.12);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 111, 161, 0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(141, 122, 255, 0.18), transparent 28%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x: hidden;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 56px;
+    }
+
+    .grid-hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+
+    .panel {
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .hero {
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -70px auto;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 111, 161, 0.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: #7a48c4;
+      background: rgba(141, 122, 255, 0.10);
+      border: 1px solid rgba(141, 122, 255, 0.12);
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 5vw, 5rem);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+    }
+
+    .subtitle {
+      margin: 16px 0 0;
+      font-size: 1.06rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 18px;
+      padding: 14px 18px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), #ff9f7a);
+      box-shadow: 0 10px 24px rgba(255, 111, 161, 0.22);
+    }
+
+    .btn-ghost {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--line);
+    }
+
+    .figure {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .image-shell {
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.72);
+      background: rgba(255,255,255,0.55);
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+    }
+
+    .image-shell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .figure-note {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0 6px 2px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .stat {
+      padding: 20px;
+      min-height: 118px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .stat .label {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .stat .value {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+    }
+
+    .stat .small {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .composer {
+      padding: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-title .hint {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.82);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.15s ease;
+    }
+    .chip.active {
+      background: var(--text);
+      color: white;
+      border-color: var(--text);
+    }
+
+    .add-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1.2fr 1fr 0.8fr auto;
+      align-items: end;
+      padding: 16px;
+      border: 1px dashed rgba(31, 25, 48, 0.14);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.65);
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .input, .textarea, .select {
+      width: 100%;
+      border: 1px solid rgba(31, 25, 48, 0.12);
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-size: 0.98rem;
+      outline: none;
+      background: var(--card-solid);
+      color: var(--text);
+    }
+
+    .textarea {
+      min-height: 88px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .file {
+      width: 100%;
+      border: 1px solid rgba(31, 25, 48, 0.12);
+      border-radius: 16px;
+      padding: 12px;
+      background: var(--card-solid);
+      font-size: 0.92rem;
+    }
+
+    .btn-add {
+      height: 48px;
+      padding: 0 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .progress {
+      margin-top: 14px;
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    .bar {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(31, 25, 48, 0.08);
+      overflow: hidden;
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      transition: width 0.25s ease;
+    }
+
+    .tasks {
+      display: grid;
+      gap: 14px;
+    }
+
+    .task {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(31, 25, 48, 0.08);
+      border-radius: 24px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 16px;
+      box-shadow: 0 10px 24px rgba(71,46,93,0.05);
+    }
+
+    .thumb {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .thumb img, .thumb .placeholder {
+      width: 100%;
+      height: 136px;
+      border-radius: 20px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #fce4ec, #ede7f6);
+      border: 1px solid rgba(255,255,255,0.72);
+    }
+
+    .placeholder {
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 900;
+      color: rgba(31, 25, 48, 0.42);
+      text-align: center;
+      padding: 12px;
+    }
+
+    .thumb .mini-btn {
+      width: 100%;
+      border: 1px solid rgba(31, 25, 48, 0.12);
+      border-radius: 16px;
+      padding: 11px 12px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .task-main {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .task-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .task-title {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .task-title input, .task-memo textarea {
+      width: 100%;
+      border: 1px solid rgba(31, 25, 48, 0.12);
+      border-radius: 16px;
+      padding: 13px 14px;
+      background: white;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .task-title input.done {
+      text-decoration: line-through;
+      background: rgba(255, 111, 161, 0.08);
+    }
+
+    .task-memo textarea {
+      min-height: 90px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .task-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .done-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(31, 25, 48, 0.04);
+      border: 1px solid rgba(31, 25, 48, 0.06);
+      font-weight: 800;
+      user-select: none;
+    }
+
+    .done-wrap input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+    }
+
+    .del-btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 11px 14px;
+      background: rgba(255, 111, 161, 0.11);
+      color: #c2185b;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .empty {
+      padding: 28px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed rgba(31, 25, 48, 0.14);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.68);
+    }
+
+    .foot {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 980px) {
+      .grid-hero, .stats, .task {
+        grid-template-columns: 1fr;
+      }
+
+      .add-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="grid-hero">
+      <div class="panel hero">
+        <div class="badge">♡ quirky mode: on</div>
+        <h1 id="mainHeading">SANYAS</h1>
+        <p class="subtitle">
+          Sanyas (or Sannyasa) is the final, ultimate stage of life, dedicated entirely to spiritual liberation,
+          renunciation of material desires, and selfless service. It signifies inner freedom, detachment from societal
+          expectations, and an undivided focus on awakening.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="revealBtn">I have a tiny objection</button>
+          <button class="btn btn-ghost" id="hideBtn" style="display:none;">Back to SANYAS</button>
+        </div>
+      </div>
+
+      <div class="panel figure">
+        <div class="image-shell">
+          <img id="heroImg" src="sanya.jpg" alt="Sanya" />
+        </div>
+        <p class="figure-note" id="figureNote">
+          Before: complete detachment.
+          <br />
+          After: SANYA's era.
+        </p>
+      </div>
+    </section>
+
+    <section id="appArea" style="display:none;">
+      <div class="stats">
+        <div class="panel stat">
+          <div class="label">Things planned</div>
+          <div class="value" id="totalCount">0</div>
+          <div class="small">ideas for dates, adventures, and memories</div>
+        </div>
+        <div class="panel stat">
+          <div class="label">Completed together</div>
+          <div class="value" id="doneCount">0</div>
+          <div class="small">checked off as shared memories</div>
+        </div>
+        <div class="panel stat">
+          <div class="label">Still to do</div>
+          <div class="value" id="leftCount">0</div>
+          <div class="small">saved for later</div>
+        </div>
+        <div class="panel stat">
+          <div class="label">Progress</div>
+          <div class="value" id="pctCount">0%</div>
+          <div class="small">towards our little list</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <section class="panel composer">
+          <div class="section-title">
+            <h2>To-do list for Sanya</h2>
+            <div class="hint">Add more anytime — the list grows with you</div>
+          </div>
+
+          <div class="filters">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="active">Active</button>
+            <button class="chip" data-filter="done">Done</button>
+          </div>
+
+          <div class="add-grid">
+            <div class="field">
+              <label>Thing</label>
+              <input id="newTitle" class="input" placeholder="e.g. picnic at sunset" />
+            </div>
+
+            <div class="field">
+              <label>Memento</label>
+              <input id="newMemo" class="input" placeholder="tiny note to remember this later" />
+            </div>
+
+            <div class="field">
+              <label>Picture</label>
+              <input id="newImage" class="file" type="file" accept="image/*" />
+            </div>
+
+            <button id="addTaskBtn" class="btn btn-add btn-primary">Add</button>
+          </div>
+
+          <div class="progress">
+            <div class="progress-row">
+              <span>Progress together</span>
+              <strong id="progressText">0%</strong>
+            </div>
+            <div class="bar"><span id="progressBar"></span></div>
+          </div>
+        </section>
+
+        <section class="tasks" id="tasks"></section>
+        <div class="empty" id="emptyState" style="display:none;">
+          No items in this filter yet. Add one above.
+        </div>
+      </div>
+
+      <div class="foot">
+        This page saves the list in the browser on the same device, so the items stay after refresh.
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "sanya_sanyas_list_v1";
+
+    const starterTasks = [
+      {
+        id: crypto.randomUUID(),
+        title: "Sunset date",
+        memo: "Watch one sunset and pretend time stopped for us.",
+        image: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "Coffee or chai mission",
+        memo: "Find the one drink we end up rating too seriously.",
+        image: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "A spontaneous drive",
+        memo: "No destination, just vibes and a good playlist.",
+        image: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "One perfect meal",
+        memo: "Eat something so good it becomes a recurring debate.",
+        image: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "A photo we keep forever",
+        memo: "The kind of picture that becomes a favorite memory.",
+        image: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "A tiny surprise",
+        memo: "Something small, silly, and very us.",
+        image: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "Plan the next thing",
+        memo: "Because seven ideas will never be enough.",
+        image: "",
+        done: false
+      }
+    ];
+
+    const els = {
+      mainHeading: document.getElementById("mainHeading"),
+      heroImg: document.getElementById("heroImg"),
+      figureNote: document.getElementById("figureNote"),
+      revealBtn: document.getElementById("revealBtn"),
+      hideBtn: document.getElementById("hideBtn"),
+      appArea: document.getElementById("appArea"),
+      totalCount: document.getElementById("totalCount"),
+      doneCount: document.getElementById("doneCount"),
+      leftCount: document.getElementById("leftCount"),
+      pctCount: document.getElementById("pctCount"),
+      progressText: document.getElementById("progressText"),
+      progressBar: document.getElementById("progressBar"),
+      tasks: document.getElementById("tasks"),
+      emptyState: document.getElementById("emptyState"),
+      newTitle: document.getElementById("newTitle"),
+      newMemo: document.getElementById("newMemo"),
+      newImage: document.getElementById("newImage"),
+      addTaskBtn: document.getElementById("addTaskBtn"),
+      chips: document.querySelectorAll(".chip"),
+    };
+
+    let revealed = false;
+    let filter = "all";
+    let tasks = loadTasks();
+
+    function loadTasks() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) return starterTasks;
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed : starterTasks;
+      } catch {
+        return starterTasks;
+      }
+    }
+
+    function saveTasks() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    }
+
+    function updateRevealUI() {
+      if (revealed) {
+        els.mainHeading.textContent = "SANYA's";
+        els.revealBtn.style.display = "none";
+        els.hideBtn.style.display = "inline-flex";
+        els.appArea.style.display = "block";
+        els.figureNote.innerHTML = "<strong>After:</strong> SANYA's era.";
+      } else {
+        els.mainHeading.textContent = "SANYAS";
+        els.revealBtn.style.display = "inline-flex";
+        els.hideBtn.style.display = "none";
+        els.appArea.style.display = "none";
+        els.figureNote.innerHTML = "Before: complete detachment.<br>After: SANYA's era.";
+      }
+    }
+
+    function stats() {
+      const total = tasks.length;
+      const done = tasks.filter(t => t.done).length;
+      const left = total - done;
+      const pct = total ? Math.round((done / total) * 100) : 0;
+
+      els.totalCount.textContent = total;
+      els.doneCount.textContent = done;
+      els.leftCount.textContent = left;
+      els.pctCount.textContent = `${pct}%`;
+      els.progressText.textContent = `${pct}%`;
+      els.progressBar.style.width = `${pct}%`;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function filteredTasks() {
+      return tasks.filter(task => {
+        if (filter === "active") return !task.done;
+        if (filter === "done") return task.done;
+        return true;
+      });
+    }
+
+    function render() {
+      stats();
+
+      const visible = filteredTasks();
+      els.tasks.innerHTML = "";
+      els.emptyState.style.display = visible.length ? "none" : "block";
+
+      visible.forEach(task => {
+        const card = document.createElement("article");
+        card.className = "task";
+
+        const thumbHtml = task.image
+          ? `<img src="${task.image}" alt="${escapeHtml(task.title)}" />`
+          : `<div class="placeholder">${escapeHtml(task.title.slice(0, 1).toUpperCase())}</div>`;
+
+        card.innerHTML = `
+          <div class="thumb">
+            ${thumbHtml}
+            <button class="mini-btn" type="button">Upload picture</button>
+            <input class="file-input" type="file" accept="image/*" hidden />
+          </div>
+
+          <div class="task-main">
+            <div class="task-top">
+              <div class="task-title">
+                <input type="text" value="${escapeHtml(task.title)}" class="${task.done ? "done" : ""}" />
+              </div>
+
+              <div class="task-controls">
+                <label class="done-wrap">
+                  <input type="checkbox" ${task.done ? "checked" : ""} />
+                  done
+                </label>
+                <button class="del-btn" type="button">Delete</button>
+              </div>
+            </div>
+
+            <div class="task-memo">
+              <textarea placeholder="Write a memento...">${escapeHtml(task.memo)}</textarea>
+            </div>
+          </div>
+        `;
+
+        const titleInput = card.querySelector(".task-title input");
+        const memoInput = card.querySelector(".task-memo textarea");
+        const doneInput = card.querySelector(".done-wrap input");
+        const deleteBtn = card.querySelector(".del-btn");
+        const uploadBtn = card.querySelector(".mini-btn");
+        const fileInput = card.querySelector(".file-input");
+
+        titleInput.addEventListener("input", (e) => {
+          task.title = e.target.value;
+          saveTasks();
+          render();
+        });
+
+        memoInput.addEventListener("input", (e) => {
+          task.memo = e.target.value;
+          saveTasks();
+        });
+
+        doneInput.addEventListener("change", (e) => {
+          task.done = e.target.checked;
+          saveTasks();
+          render();
+        });
+
+        deleteBtn.addEventListener("click", () => {
+          tasks = tasks.filter(t => t.id !== task.id);
+          saveTasks();
+          render();
+        });
+
+        uploadBtn.addEventListener("click", () => fileInput.click());
+
+        fileInput.addEventListener("change", (e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+
+          const reader = new FileReader();
+          reader.onload = () => {
+            task.image = String(reader.result || "");
+            saveTasks();
+            render();
+          };
+          reader.readAsDataURL(file);
+        });
+
+        els.tasks.appendChild(card);
+      });
+    }
+
+    function addTask() {
+      const title = els.newTitle.value.trim();
+      const memo = els.newMemo.value.trim();
+      const file = els.newImage.files?.[0];
+
+      if (!title) return;
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          tasks.unshift({
+            id: crypto.randomUUID(),
+            title,
+            memo,
+            image: String(reader.result || ""),
+            done: false
+          });
+          els.newTitle.value = "";
+          els.newMemo.value = "";
+          els.newImage.value = "";
+          saveTasks();
+          render();
+        };
+        reader.readAsDataURL(file);
+      } else {
+        tasks.unshift({
+          id: crypto.randomUUID(),
+          title,
+          memo,
+          image: "",
+          done: false
+        });
+        els.newTitle.value = "";
+        els.newMemo.value = "";
+        els.newImage.value = "";
+        saveTasks();
+        render();
+      }
+    }
+
+    els.revealBtn.addEventListener("click", () => {
+      revealed = true;
+      updateRevealUI();
+      render();
+    });
+
+    els.hideBtn.addEventListener("click", () => {
+      revealed = false;
+      updateRevealUI();
+    });
+
+    els.addTaskBtn.addEventListener("click", addTask);
+
+    els.newTitle.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") addTask();
+    });
+
+    els.chips.forEach(btn => {
+      btn.addEventListener("click", () => {
+        els.chips.forEach(c => c.classList.remove("active"));
+        btn.classList.add("active");
+        filter = btn.dataset.filter;
+        render();
+      });
+    });
+
+    updateRevealUI();
+    render();
+  </script>
+</body>
+</html>
