@@ -889,4 +889,859 @@
     render();
   </script>
 </body>
+</html>    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 90%);
+      opacity: 0.35;
+    }
+
+    .wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    .shell {
+      border: 1px solid rgba(110, 255, 168, 0.15);
+      background: linear-gradient(180deg, rgba(7, 12, 18, 0.92), rgba(4, 8, 13, 0.97));
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(110, 255, 168, 0.12);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .dot:nth-child(1) { background: rgba(255, 107, 122, 0.55); }
+    .dot:nth-child(2) { background: rgba(255, 201, 87, 0.55); }
+    .dot:nth-child(3) { background: rgba(110, 255, 168, 0.55); }
+
+    .status {
+      color: var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 28px 20px 18px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid rgba(110, 255, 168, 0.12);
+      background: linear-gradient(180deg, rgba(10, 16, 24, 0.86), rgba(7, 12, 18, 0.95));
+      border-radius: var(--radius);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .terminal {
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terminal::after {
+      content: "";
+      position: absolute;
+      inset: auto -90px -90px auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(110,255,168,0.12), transparent 65%);
+      pointer-events: none;
+    }
+
+    .label {
+      color: var(--accent);
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 7vw, 5.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      text-transform: uppercase;
+      color: #dfffea;
+      text-shadow: 0 0 18px rgba(110,255,168,0.13);
+    }
+
+    .subtitle {
+      margin: 18px 0 0;
+      max-width: 68ch;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #a6b9ad;
+    }
+
+    .subtitle strong {
+      color: var(--accent2);
+      font-weight: 800;
+    }
+
+    .actions {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-weight: 800;
+      border-radius: 16px;
+      padding: 13px 16px;
+      transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(0); opacity: 0.95; }
+
+    .btn-primary {
+      color: #04100a;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 28px rgba(45, 245, 197, 0.16);
+    }
+
+    .btn-ghost {
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(110,255,168,0.14);
+    }
+
+    .side {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mini {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(110,255,168,0.12);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .mini .mini-title {
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .mini .mini-text {
+      margin: 0;
+      line-height: 1.75;
+      color: #9cb3a4;
+      font-size: 0.95rem;
+    }
+
+    .content {
+      display: none;
+      padding: 4px 20px 24px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      padding: 18px;
+      min-height: 110px;
+    }
+
+    .stat .k {
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .stat .v {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #effff4;
+      letter-spacing: -0.06em;
+    }
+
+    .stat .s {
+      margin-top: 6px;
+      color: #8fa796;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .composer {
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1.3fr 0.8fr 0.9fr auto;
+      gap: 12px;
+      align-items: end;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px dashed rgba(110,255,168,0.14);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      color: var(--accent);
+      font-size: 0.74rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      background: #081019;
+      color: var(--text);
+      border: 1px solid rgba(110,255,168,0.16);
+      border-radius: 14px;
+      padding: 13px 14px;
+      outline: none;
+      font-family: var(--mono);
+      font-size: 0.96rem;
+    }
+
+    input[type="text"]::placeholder, textarea::placeholder {
+      color: #5f7266;
+    }
+
+    textarea {
+      min-height: 86px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .small-help {
+      margin-top: 8px;
+      color: #7c9a8b;
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    .progress {
+      margin-top: 16px;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+      color: #9cb3a4;
+      font-size: 0.92rem;
+    }
+
+    .bar {
+      height: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(110,255,168,0.12);
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: width 0.25s ease;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .chip {
+      border: 1px solid rgba(110,255,168,0.14);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .chip.active {
+      background: linear-gradient(135deg, rgba(110,255,168,0.22), rgba(45,245,197,0.12));
+      box-shadow: inset 0 0 0 1px rgba(110,255,168,0.16);
+    }
+
+    .tasks {
+      display: grid;
+      gap: 14px;
+    }
+
+    .task {
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 16px;
+      border-radius: 22px;
+      border: 1px solid rgba(110,255,168,0.12);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+    }
+
+    .preview {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .preview .imgbox, .preview .placeholder {
+      width: 100%;
+      height: 140px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(110,255,168,0.12);
+      background: #071019;
+    }
+
+    .preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .placeholder {
+      display: grid;
+      place-items: center;
+      color: rgba(110,255,168,0.6);
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+    }
+
+    .preview .file-line {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .preview .file-line input {
+      width: 100%;
+    }
+
+    .body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .task-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .title-wrap {
+      flex: 1;
+      min-width: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .title-wrap .tag, .body .tag {
+      color: var(--accent);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .done-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(110,255,168,0.12);
+      background: rgba(255,255,255,0.03);
+      font-weight: 800;
+      user-select: none;
+      color: #dfffea;
+    }
+
+    .done-wrap input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+    }
+
+    .delete {
+      border: 1px solid rgba(255,107,122,0.24);
+      background: rgba(255,107,122,0.10);
+      color: #ffb4bc;
+    }
+
+    .empty {
+      padding: 26px;
+      border: 1px dashed rgba(110,255,168,0.14);
+      border-radius: 22px;
+      color: #90a99a;
+      text-align: center;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .footer {
+      padding: 6px 20px 22px;
+      color: #6f8478;
+      font-size: 0.88rem;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1020px) {
+      .hero,
+      .stats,
+      .task {
+        grid-template-columns: 1fr;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="shell">
+      <div class="topbar">
+        <div class="dots" aria-hidden="true">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <div class="status" id="statusText">system: locked // awaiting override</div>
+      </div>
+
+      <section class="hero">
+        <div class="card terminal">
+          <div class="label">restricted entry</div>
+          <h1 id="mainHeading">SANYAS</h1>
+          <p class="subtitle" id="mainSubtitle">
+            Sanyas (or Sannyasa) is the final, ultimate stage of life, dedicated entirely to spiritual liberation,
+            renunciation of material desires, and selfless service. It signifies inner freedom, detachment from societal
+            expectations, and an undivided focus on awakening.
+          </p>
+
+          <div class="actions">
+            <button class="btn-primary" id="toggleBtn">initiate override</button>
+            <button class="btn-ghost" id="resetBtn" style="display:none;">rollback</button>
+          </div>
+        </div>
+
+        <div class="card side">
+          <div class="mini">
+            <div class="mini-title">notice</div>
+            <p class="mini-text">
+              This interface is intentionally styled like a secure terminal panel. No bright romance layout, no soft themes,
+              just a clean black-site look for the SANYAS → SANYA's reveal.
+            </p>
+          </div>
+          <div class="mini">
+            <div class="mini-title">image handling</div>
+            <p class="mini-text">
+              Upload your image files into a repo folder like <strong>images/</strong>, then type the path in each task's
+              image box, for example: <strong>images/date1.jpg</strong>.
+            </p>
+          </div>
+          <div class="mini">
+            <div class="mini-title">task mode</div>
+            <p class="mini-text">
+              One image per task. Checkbox updates the count when the task is done. No memento fields, no extra buttons.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content" id="contentArea">
+        <div class="stats">
+          <div class="card stat">
+            <div class="k">tasks total</div>
+            <div class="v" id="totalCount">0</div>
+            <div class="s">ideas to do together</div>
+          </div>
+          <div class="card stat">
+            <div class="k">completed</div>
+            <div class="v" id="doneCount">0</div>
+            <div class="s">checked off on the page</div>
+          </div>
+          <div class="card stat">
+            <div class="k">remaining</div>
+            <div class="v" id="leftCount">0</div>
+            <div class="s">still waiting for their turn</div>
+          </div>
+          <div class="card stat">
+            <div class="k">progress</div>
+            <div class="v" id="progressPercent">0%</div>
+            <div class="s">completion status</div>
+          </div>
+        </div>
+
+        <section class="card composer">
+          <div class="filters">
+            <button class="chip active" data-filter="all">ALL</button>
+            <button class="chip" data-filter="active">ACTIVE</button>
+            <button class="chip" data-filter="done">DONE</button>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="newTitle">Task name</label>
+              <input id="newTitle" type="text" placeholder="e.g. midnight drive" />
+            </div>
+
+            <div class="field">
+              <label for="newImage">Image path</label>
+              <input id="newImage" type="text" placeholder="images/task1.jpg" />
+            </div>
+
+            <div class="field">
+              <label>Quick note</label>
+              <input type="text" value="No memento field anymore." disabled />
+              <div class="small-help">Only one image per task. Put the file in your repo and use the file path here.</div>
+            </div>
+
+            <button class="btn-primary" id="addTaskBtn">add task</button>
+          </div>
+
+          <div class="progress">
+            <div class="progress-head">
+              <span>overall progress</span>
+              <strong id="progressText">0%</strong>
+            </div>
+            <div class="bar"><span id="progressBar"></span></div>
+          </div>
+        </section>
+
+        <section class="tasks" id="tasks"></section>
+        <div class="empty" id="emptyState" style="display:none;">No tasks in this view. Add one above.</div>
+      </section>
+
+      <div class="footer">
+        The list saves in this browser on this device. Images must be stored in your GitHub repo and referenced by file path.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "sanya_sanyas_hacker_list_v2";
+
+    const starterTasks = [
+      {
+        id: crypto.randomUUID(),
+        title: "Sunset date",
+        imagePath: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "Coffee or chai mission",
+        imagePath: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "Spontaneous drive",
+        imagePath: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "One perfect meal",
+        imagePath: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "A photo we keep forever",
+        imagePath: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "A tiny surprise",
+        imagePath: "",
+        done: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: "Plan the next thing",
+        imagePath: "",
+        done: false
+      }
+    ];
+
+    const els = {
+      statusText: document.getElementById("statusText"),
+      mainHeading: document.getElementById("mainHeading"),
+      mainSubtitle: document.getElementById("mainSubtitle"),
+      toggleBtn: document.getElementById("toggleBtn"),
+      resetBtn: document.getElementById("resetBtn"),
+      contentArea: document.getElementById("contentArea"),
+      totalCount: document.getElementById("totalCount"),
+      doneCount: document.getElementById("doneCount"),
+      leftCount: document.getElementById("leftCount"),
+      progressPercent: document.getElementById("progressPercent"),
+      progressText: document.getElementById("progressText"),
+      progressBar: document.getElementById("progressBar"),
+      tasks: document.getElementById("tasks"),
+      emptyState: document.getElementById("emptyState"),
+      newTitle: document.getElementById("newTitle"),
+      newImage: document.getElementById("newImage"),
+      addTaskBtn: document.getElementById("addTaskBtn"),
+      chips: document.querySelectorAll(".chip"),
+    };
+
+    let revealed = false;
+    let filter = "all";
+    let tasks = loadTasks();
+
+    function loadTasks() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) return starterTasks;
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed : starterTasks;
+      } catch {
+        return starterTasks;
+      }
+    }
+
+    function saveTasks() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    }
+
+    function setRevealState(nextState) {
+      revealed = nextState;
+
+      if (revealed) {
+        els.mainHeading.textContent = "SANYA's";
+        els.mainSubtitle.textContent =
+          "The emerging Indian actor, theater artist, and model or should I call you as Raveena from your role in the web series Jamnapaar.";
+        els.toggleBtn.style.display = "none";
+        els.resetBtn.style.display = "inline-block";
+        els.statusText.textContent = "system: access granted // identity override applied";
+        els.contentArea.style.display = "block";
+      } else {
+        els.mainHeading.textContent = "SANYAS";
+        els.mainSubtitle.textContent =
+          "Sanyas (or Sannyasa) is the final, ultimate stage of life, dedicated entirely to spiritual liberation, renunciation of material desires, and selfless service. It signifies inner freedom, detachment from societal expectations, and an undivided focus on awakening.";
+        els.toggleBtn.style.display = "inline-block";
+        els.resetBtn.style.display = "none";
+        els.statusText.textContent = "system: locked // awaiting override";
+        els.contentArea.style.display = "none";
+      }
+    }
+
+    function stats() {
+      const total = tasks.length;
+      const done = tasks.filter((t) => t.done).length;
+      const left = total - done;
+      const pct = total ? Math.round((done / total) * 100) : 0;
+
+      els.totalCount.textContent = total;
+      els.doneCount.textContent = done;
+      els.leftCount.textContent = left;
+      els.progressPercent.textContent = `${pct}%`;
+      els.progressText.textContent = `${pct}%`;
+      els.progressBar.style.width = `${pct}%`;
+    }
+
+    function filteredTasks() {
+      return tasks.filter((task) => {
+        if (filter === "active") return !task.done;
+        if (filter === "done") return task.done;
+        return true;
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function render() {
+      stats();
+
+      const visible = filteredTasks();
+      els.tasks.innerHTML = "";
+      els.emptyState.style.display = visible.length ? "none" : "block";
+
+      visible.forEach((task) => {
+        const card = document.createElement("article");
+        card.className = "task";
+
+        const previewHtml = task.imagePath
+          ? `<img src="${escapeHtml(task.imagePath)}" alt="${escapeHtml(task.title)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+             <div class="placeholder" style="display:none;">NO PREVIEW</div>`
+          : `<div class="placeholder">IMG</div>`;
+
+        card.innerHTML = `
+          <div class="preview">
+            <div class="imgbox">
+              ${previewHtml}
+            </div>
+            <div class="file-line">
+              <span class="tag">image path</span>
+              <input type="text" value="${escapeHtml(task.imagePath || "")}" placeholder="images/filename.jpg" />
+            </div>
+          </div>
+
+          <div class="body">
+            <div class="task-top">
+              <div class="title-wrap">
+                <span class="tag">task</span>
+                <input type="text" value="${escapeHtml(task.title)}" />
+              </div>
+
+              <div class="task-controls">
+                <label class="done-wrap">
+                  <input type="checkbox" ${task.done ? "checked" : ""} />
+                  done
+                </label>
+                <button class="delete" type="button">delete</button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const imgInput = card.querySelector('.file-line input');
+        const titleInput = card.querySelector('.title-wrap input');
+        const doneInput = card.querySelector('.done-wrap input');
+        const deleteBtn = card.querySelector('.delete');
+
+        imgInput.addEventListener("input", (e) => {
+          task.imagePath = e.target.value.trim();
+          saveTasks();
+          render();
+        });
+
+        titleInput.addEventListener("input", (e) => {
+          task.title = e.target.value;
+          saveTasks();
+        });
+
+        doneInput.addEventListener("change", (e) => {
+          task.done = e.target.checked;
+          saveTasks();
+          render();
+        });
+
+        deleteBtn.addEventListener("click", () => {
+          tasks = tasks.filter((t) => t.id !== task.id);
+          saveTasks();
+          render();
+        });
+
+        els.tasks.appendChild(card);
+      });
+    }
+
+    function addTask() {
+      const title = els.newTitle.value.trim();
+      const imagePath = els.newImage.value.trim();
+
+      if (!title) return;
+
+      tasks.unshift({
+        id: crypto.randomUUID(),
+        title,
+        imagePath,
+        done: false
+      });
+
+      els.newTitle.value = "";
+      els.newImage.value = "";
+      saveTasks();
+      render();
+    }
+
+    els.toggleBtn.addEventListener("click", () => setRevealState(true));
+    els.resetBtn.addEventListener("click", () => setRevealState(false));
+    els.addTaskBtn.addEventListener("click", addTask);
+
+    els.newTitle.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") addTask();
+    });
+
+    els.chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        els.chips.forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
+        filter = chip.dataset.filter;
+        render();
+      });
+    });
+
+    setRevealState(false);
+    render();
+  </script>
+</body>
 </html>
