@@ -618,6 +618,2286 @@
 
       display: grid;
 
+      grid-template-columns: minmax(150px, 220px) 1fr;
+
+      gap: 16px;
+
+      border-radius: 22px;
+
+      border: 1px solid var(--border);
+
+      background:
+
+        linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.015)
+        );
+
+    }
+
+
+    /* =========================================================
+       TASK IMAGE
+
+       9:16 images are kept completely visible.
+    ========================================================= */
+
+    .preview {
+
+      display: grid;
+
+      align-content: start;
+
+    }
+
+
+    .imgbox {
+
+      width: 100%;
+
+      aspect-ratio: 9 / 16;
+
+      border-radius: 18px;
+
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+
+      background: #071019;
+
+    }
+
+
+    .preview img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: contain;
+
+      display: block;
+
+    }
+
+
+    .placeholder {
+
+      width: 100%;
+
+      height: 100%;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 18px;
+
+      background: #071019;
+
+      color: rgba(110, 255, 168, 0.6);
+
+      font-size: 2rem;
+
+      font-weight: 900;
+
+    }
+
+
+    /* =========================================================
+       TASK CONTENT
+    ========================================================= */
+
+    .body {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 12px;
+
+    }
+
+
+    .task-top {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-start;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+
+    }
+
+
+    .title-wrap {
+
+      flex: 1;
+
+      min-width: 240px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 10px;
+
+    }
+
+
+    /* =========================================================
+       AUTHENTIC TERMINAL TASK TITLE
+
+       This is NOT an input.
+
+       It has no box around it.
+
+       It cannot be edited directly.
+    ========================================================= */
+
+    .tag {
+
+      color: var(--green);
+
+      font-size: 0.72rem;
+
+      letter-spacing: 0.2em;
+
+      text-transform: uppercase;
+
+      opacity: 0.8;
+
+    }
+
+
+    .task-title {
+
+      position: relative;
+
+      padding-left: 22px;
+
+      color: #dfffea;
+
+      font-size: clamp(1rem, 2vw, 1.25rem);
+
+      line-height: 1.65;
+
+      font-weight: 700;
+
+      letter-spacing: 0.015em;
+
+      text-shadow:
+
+        0 0 10px rgba(110, 255, 168, 0.10);
+
+    }
+
+
+    /*
+       Terminal command prompt before the task.
+    */
+
+    .task-title::before {
+
+      content: ">";
+
+      position: absolute;
+
+      left: 0;
+
+      top: 0;
+
+      color: var(--green);
+
+      font-weight: 900;
+
+      text-shadow:
+
+        0 0 10px rgba(110, 255, 168, 0.55);
+
+    }
+
+
+    /*
+       Subtle terminal cursor line below title.
+    */
+
+    .task-title::after {
+
+      content: "";
+
+      display: block;
+
+      width: 42px;
+
+      height: 2px;
+
+      margin-top: 9px;
+
+      background:
+
+        linear-gradient(
+          90deg,
+          var(--green),
+          transparent
+        );
+
+      opacity: 0.75;
+
+    }
+
+
+    .task-controls {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      flex-wrap: wrap;
+
+    }
+
+
+    .done-wrap {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      padding: 10px 12px;
+
+      border-radius: 14px;
+
+      border: 1px solid var(--border);
+
+      background: rgba(255, 255, 255, 0.03);
+
+      font-weight: 800;
+
+      user-select: none;
+
+    }
+
+
+    .done-wrap input {
+
+      width: 18px;
+
+      height: 18px;
+
+      accent-color: var(--green);
+
+    }
+
+
+    .delete {
+
+      border: 1px solid rgba(255, 107, 122, 0.24);
+
+      background: rgba(255, 107, 122, 0.10);
+
+      color: #ffb4bc;
+
+    }
+
+
+    /* =========================================================
+       ADD TASK BUTTON
+    ========================================================= */
+
+    .add-wrap {
+
+      margin-top: 16px;
+
+      padding-top: 4px;
+
+      display: flex;
+
+      justify-content: flex-end;
+
+    }
+
+
+    /* =========================================================
+       EMPTY FILTER STATE
+    ========================================================= */
+
+    .empty {
+
+      padding: 26px;
+
+      border: 1px dashed var(--border);
+
+      border-radius: 22px;
+
+      color: #90a99a;
+
+      text-align: center;
+
+      background: rgba(255, 255, 255, 0.02);
+
+    }
+
+
+    /* =========================================================
+       MOBILE RESPONSIVENESS
+    ========================================================= */
+
+    @media (max-width: 1020px) {
+
+
+      .task {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+      .preview {
+
+        max-width: 320px;
+
+        width: 100%;
+
+        margin: 0 auto;
+
+      }
+
+
+    }
+
+
+    @media (max-width: 600px) {
+
+
+      .topbar {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+      }
+
+
+      .status {
+
+        text-align: left;
+
+      }
+
+
+      .terminal {
+
+        padding: 22px;
+
+      }
+
+
+      .task-controls {
+
+        width: 100%;
+
+      }
+
+
+      .done-wrap {
+
+        flex: 1;
+
+      }
+
+
+      .delete {
+
+        flex: 1;
+
+      }
+
+
+    }
+
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================================================
+       MAIN PAGE
+  ========================================================= -->
+
+  <div class="wrap">
+
+
+    <div class="shell">
+
+
+      <!-- =====================================================
+           TERMINAL TOP BAR
+      ===================================================== -->
+
+      <div class="topbar">
+
+
+        <div class="dots">
+
+          <span class="dot"></span>
+
+          <span class="dot"></span>
+
+          <span class="dot"></span>
+
+        </div>
+
+
+        <div
+          class="status"
+          id="statusText"
+        >
+
+          system: locked // awaiting override
+
+        </div>
+
+
+      </div>
+
+
+      <!-- =====================================================
+           SANYAS / SANYA'S INTRODUCTION
+      ===================================================== -->
+
+      <section class="hero">
+
+
+        <div class="card terminal">
+
+
+          <div class="label">
+
+            restricted entry
+
+          </div>
+
+
+          <h1 id="mainHeading">
+
+            SANYAS
+
+          </h1>
+
+
+          <p
+            class="subtitle"
+            id="mainSubtitle"
+          >
+
+            Sanyas (or Sannyasa) is the final, ultimate stage of life, dedicated entirely to spiritual liberation,
+            renunciation of material desires, and selfless service. It signifies inner freedom, detachment from societal
+            expectations, and an undivided focus on awakening.
+
+          </p>
+
+
+          <div class="actions">
+
+
+            <button
+              class="btn-primary"
+              id="toggleBtn"
+            >
+
+              initiate override
+
+            </button>
+
+
+            <button
+              class="btn-ghost"
+              id="resetBtn"
+              style="display: none;"
+            >
+
+              rollback
+
+            </button>
+
+
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+
+      <!-- =====================================================
+           TASK CONTENT
+      ===================================================== -->
+
+      <section
+        class="content"
+        id="contentArea"
+      >
+
+
+        <!-- FILTER BUTTONS -->
+
+        <div class="filters">
+
+
+          <button
+            class="chip active"
+            data-filter="all"
+          >
+
+            ALL
+
+          </button>
+
+
+          <button
+            class="chip"
+            data-filter="active"
+          >
+
+            ACTIVE
+
+          </button>
+
+
+          <button
+            class="chip"
+            data-filter="done"
+          >
+
+            DONE
+
+          </button>
+
+
+        </div>
+
+
+        <!-- OVERALL PROGRESS -->
+
+        <div class="progress">
+
+
+          <div class="progress-head">
+
+
+            <span>
+
+              overall progress
+
+            </span>
+
+
+            <strong id="progressText">
+
+              0%
+
+            </strong>
+
+
+          </div>
+
+
+          <div class="bar">
+
+
+            <span
+              id="progressBar"
+            ></span>
+
+
+          </div>
+
+
+        </div>
+
+
+        <!-- TASKS -->
+
+        <section
+          class="tasks"
+          id="tasks"
+        ></section>
+
+
+        <!-- EMPTY FILTER MESSAGE -->
+
+        <div
+          class="empty"
+          id="emptyState"
+          style="display: none;"
+        >
+
+          No tasks in this view. Add one below.
+
+        </div>
+
+
+        <!-- ADD TASK BUTTON -->
+
+        <div class="add-wrap">
+
+
+          <button
+            class="btn-primary"
+            id="addTaskBtn"
+          >
+
+            add task
+
+          </button>
+
+
+        </div>
+
+
+      </section>
+
+
+    </div>
+
+
+  </div>
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================= -->
+
+  <script>
+
+
+    /* =========================================================
+       LOCAL STORAGE KEY
+    ========================================================= */
+
+    const STORAGE_KEY =
+      "sanya_sanyas_hacker_list_v3";
+
+
+    /* =========================================================
+       YOUR INITIAL 6 TASKS
+    ========================================================= */
+
+    const starterTasks = [
+
+
+      {
+
+        id: crypto.randomUUID(),
+
+        title: "eat and rate all the bad cheesecakes in mumbai",
+
+        imagePath: "images/IMG_7766.PNG",
+
+        done: false
+
+      },
+
+
+      {
+
+        id: crypto.randomUUID(),
+
+        title: "make you try the most authentic ramen in mumbai",
+
+        imagePath: "images/IMG_7769.PNG",
+
+        done: false
+
+      },
+
+
+      {
+
+        id: crypto.randomUUID(),
+
+        title: "watch 'gori tere pyaar mein' together",
+
+        imagePath: "images/IMG_7943.PNG",
+
+        done: false
+
+      },
+
+
+      {
+
+        id: crypto.randomUUID(),
+
+        title: "cook mutton palak gosht with jeera rice for you",
+
+        imagePath: "images/IMG_7946.PNG",
+
+        done: false
+
+      },
+
+
+      {
+
+        id: crypto.randomUUID(),
+
+        title: "attend your theatre play and hoot for you",
+
+        imagePath: "images/IMG_7947.PNG",
+
+        done: false
+
+      },
+
+
+      {
+
+        id: crypto.randomUUID(),
+
+        title: "teach you how to play fifa on ps5 as bellingham",
+
+        imagePath: "images/sanyaahuja.jpg",
+
+        done: false
+
+      }
+
+
+    ];
+
+
+    /* =========================================================
+       FIND HTML ELEMENTS
+    ========================================================= */
+
+    const els = {
+
+
+      statusText:
+
+        document.getElementById(
+          "statusText"
+        ),
+
+
+      mainHeading:
+
+        document.getElementById(
+          "mainHeading"
+        ),
+
+
+      mainSubtitle:
+
+        document.getElementById(
+          "mainSubtitle"
+        ),
+
+
+      toggleBtn:
+
+        document.getElementById(
+          "toggleBtn"
+        ),
+
+
+      resetBtn:
+
+        document.getElementById(
+          "resetBtn"
+        ),
+
+
+      contentArea:
+
+        document.getElementById(
+          "contentArea"
+        ),
+
+
+      progressText:
+
+        document.getElementById(
+          "progressText"
+        ),
+
+
+      progressBar:
+
+        document.getElementById(
+          "progressBar"
+        ),
+
+
+      tasks:
+
+        document.getElementById(
+          "tasks"
+        ),
+
+
+      emptyState:
+
+        document.getElementById(
+          "emptyState"
+        ),
+
+
+      addTaskBtn:
+
+        document.getElementById(
+          "addTaskBtn"
+        ),
+
+
+      chips:
+
+        document.querySelectorAll(
+          ".chip"
+        )
+
+
+    };
+
+
+    /* =========================================================
+       PAGE STATE
+    ========================================================= */
+
+    let revealed =
+      false;
+
+
+    let filter =
+      "all";
+
+
+    let tasks =
+      loadTasks();
+
+
+    /* =========================================================
+       LOAD TASKS
+    ========================================================= */
+
+    function loadTasks() {
+
+
+      try {
+
+
+        const saved =
+
+          localStorage.getItem(
+            STORAGE_KEY
+          );
+
+
+        if (!saved) {
+
+
+          return starterTasks;
+
+
+        }
+
+
+        const parsed =
+
+          JSON.parse(
+            saved
+          );
+
+
+        if (
+
+          Array.isArray(
+            parsed
+          )
+
+        ) {
+
+
+          return parsed;
+
+
+        }
+
+
+        return starterTasks;
+
+
+      }
+
+
+      catch (error) {
+
+
+        return starterTasks;
+
+
+      }
+
+
+    }
+
+
+    /* =========================================================
+       SAVE TASKS
+    ========================================================= */
+
+    function saveTasks() {
+
+
+      localStorage.setItem(
+
+        STORAGE_KEY,
+
+        JSON.stringify(
+          tasks
+        )
+
+      );
+
+
+    }
+
+
+    /* =========================================================
+       CHANGE FROM SANYAS TO SANYA'S
+    ========================================================= */
+
+    function setRevealState(
+      nextState
+    ) {
+
+
+      revealed =
+        nextState;
+
+
+      if (revealed) {
+
+
+        els.mainHeading.textContent =
+          "SANYA's";
+
+
+        els.mainSubtitle.textContent =
+
+          "The emerging Indian actor, theater artist, and model or should I call you 'Raveena' from your role in the web series Jamnapaar. An autograph from you, and my ladoos are still pending...";
+
+
+        els.toggleBtn.style.display =
+          "none";
+
+
+        els.resetBtn.style.display =
+          "inline-block";
+
+
+        els.statusText.textContent =
+
+          "system: access granted // identity override applied";
+
+
+        els.contentArea.style.display =
+          "block";
+
+
+      }
+
+
+      else {
+
+
+        els.mainHeading.textContent =
+          "SANYAS";
+
+
+        els.mainSubtitle.textContent =
+
+          "Sanyas (or Sannyasa) is the final, ultimate stage of life, dedicated entirely to spiritual liberation, renunciation of material desires, and selfless service. It signifies inner freedom, detachment from societal expectations, and an undivided focus on awakening.";
+
+
+        els.toggleBtn.style.display =
+          "inline-block";
+
+
+        els.resetBtn.style.display =
+          "none";
+
+
+        els.statusText.textContent =
+
+          "system: locked // awaiting override";
+
+
+        els.contentArea.style.display =
+          "none";
+
+
+      }
+
+
+    }
+
+
+    /* =========================================================
+       FILTER TASKS
+    ========================================================= */
+
+    function filteredTasks() {
+
+
+      return tasks.filter(
+
+        function(task) {
+
+
+          if (
+
+            filter === "active"
+
+          ) {
+
+
+            return !task.done;
+
+
+          }
+
+
+          if (
+
+            filter === "done"
+
+          ) {
+
+
+            return task.done;
+
+
+          }
+
+
+          return true;
+
+
+        }
+
+      );
+
+
+    }
+
+
+    /* =========================================================
+       PROTECT TEXT INSERTED INTO HTML
+    ========================================================= */
+
+    function escapeHtml(
+      str
+    ) {
+
+
+      return String(str)
+
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+
+        .replaceAll(
+          "'",
+          "&#39;"
+        );
+
+
+    }
+
+
+    /* =========================================================
+       RENDER TASKS AND PROGRESS
+    ========================================================= */
+
+    function render() {
+
+
+      const total =
+        tasks.length;
+
+
+      const done =
+
+        tasks.filter(
+
+          function(task) {
+
+            return task.done;
+
+          }
+
+        ).length;
+
+
+      const remaining =
+        total - done;
+
+
+      const percentage =
+
+        total
+
+          ? Math.round(
+              (done / total) * 100
+            )
+
+          : 0;
+
+
+      if (revealed) {
+
+
+        els.statusText.textContent =
+
+          `system: access granted // ${done}/${total} complete // ${remaining} pending`;
+
+
+      }
+
+
+      els.progressText.textContent =
+
+        `${percentage}%`;
+
+
+      els.progressBar.style.width =
+
+        `${percentage}%`;
+
+
+      const visibleTasks =
+
+        filteredTasks();
+
+
+      els.tasks.innerHTML =
+        "";
+
+
+      if (
+
+        visibleTasks.length === 0
+
+      ) {
+
+
+        els.emptyState.style.display =
+          "block";
+
+
+      }
+
+
+      else {
+
+
+        els.emptyState.style.display =
+          "none";
+
+
+      }
+
+
+      visibleTasks.forEach(
+
+        function(task) {
+
+
+          const card =
+
+            document.createElement(
+              "article"
+            );
+
+
+          card.className =
+            "task";
+
+
+          let previewHTML;
+
+
+          if (
+
+            task.imagePath
+
+          ) {
+
+
+            previewHTML = `
+
+
+              <img
+
+                src="${escapeHtml(
+                  task.imagePath
+                )}"
+
+                alt="${escapeHtml(
+                  task.title
+                )}"
+
+              />
+
+
+              <div
+
+                class="placeholder"
+
+                style="display:none;"
+
+              >
+
+                NO PREVIEW
+
+              </div>
+
+
+            `;
+
+
+          }
+
+
+          else {
+
+
+            previewHTML = `
+
+
+              <div
+
+                class="placeholder"
+
+              >
+
+                IMG
+
+              </div>
+
+
+            `;
+
+
+          }
+
+
+          card.innerHTML = `
+
+
+            <div class="preview">
+
+
+              <div class="imgbox">
+
+
+                ${previewHTML}
+
+
+              </div>
+
+
+            </div>
+
+
+            <div class="body">
+
+
+              <div class="task-top">
+
+
+                <div class="title-wrap">
+
+
+                  <span class="tag">
+
+                    task // ${escapeHtml(
+                      task.id.slice(
+                        0,
+                        8
+                      )
+                    )}
+
+                  </span>
+
+
+                  <div class="task-title">
+
+                    ${escapeHtml(
+                      task.title
+                    )}
+
+                  </div>
+
+
+                </div>
+
+
+                <div class="task-controls">
+
+
+                  <label class="done-wrap">
+
+
+                    <input
+
+                      type="checkbox"
+
+                      ${
+                        task.done
+                          ? "checked"
+                          : ""
+
+                      }
+
+                    />
+
+
+                    done
+
+
+                  </label>
+
+
+                  <button
+
+                    class="delete"
+
+                    type="button"
+
+                  >
+
+                    delete
+
+                  </button>
+
+
+                </div>
+
+
+              </div>
+
+
+            </div>
+
+
+          `;
+
+
+          const doneInput =
+
+            card.querySelector(
+
+              ".done-wrap input"
+
+            );
+
+
+          const deleteButton =
+
+            card.querySelector(
+
+              ".delete"
+
+            );
+
+
+          doneInput.addEventListener(
+
+            "change",
+
+            function(event) {
+
+
+              task.done =
+
+                event.target.checked;
+
+
+              saveTasks();
+
+
+              render();
+
+
+            }
+
+          );
+
+
+          deleteButton.addEventListener(
+
+            "click",
+
+            function() {
+
+
+              tasks =
+
+                tasks.filter(
+
+                  function(item) {
+
+
+                    return (
+
+                      item.id !== task.id
+
+                    );
+
+
+                  }
+
+                );
+
+
+              saveTasks();
+
+
+              render();
+
+
+            }
+
+          );
+
+
+          els.tasks.appendChild(
+            card
+          );
+
+
+        }
+
+      );
+
+
+    }
+
+
+    /* =========================================================
+       ADD A NEW TASK
+    ========================================================= */
+
+    function addTask() {
+
+
+      const title =
+
+        prompt(
+
+          "Enter a new task name:"
+
+        );
+
+
+      if (
+
+        !title ||
+
+        !title.trim()
+
+      ) {
+
+
+        return;
+
+
+      }
+
+
+      tasks.push({
+
+
+        id:
+
+          crypto.randomUUID(),
+
+
+        title:
+
+          title.trim(),
+
+
+        imagePath:
+
+
+          "",
+
+
+        done:
+
+
+          false
+
+
+      });
+
+
+      saveTasks();
+
+
+      render();
+
+
+    }
+
+
+    /* =========================================================
+       BUTTON EVENTS
+    ========================================================= */
+
+    els.toggleBtn.addEventListener(
+
+      "click",
+
+      function() {
+
+
+        setRevealState(
+          true
+        );
+
+
+      }
+
+    );
+
+
+    els.resetBtn.addEventListener(
+
+      "click",
+
+      function() {
+
+
+        setRevealState(
+          false
+        );
+
+
+      }
+
+    );
+
+
+    els.addTaskBtn.addEventListener(
+
+      "click",
+
+      function() {
+
+
+        addTask();
+
+
+      }
+
+    );
+
+
+    /* =========================================================
+       FILTER BUTTONS
+    ========================================================= */
+
+    els.chips.forEach(
+
+      function(chip) {
+
+
+        chip.addEventListener(
+
+          "click",
+
+          function() {
+
+
+            els.chips.forEach(
+
+              function(otherChip) {
+
+
+                otherChip.classList.remove(
+
+                  "active"
+
+                );
+
+
+              }
+
+            );
+
+
+            chip.classList.add(
+
+              "active"
+
+            );
+
+
+            filter =
+
+              chip.dataset.filter;
+
+
+            render();
+
+
+          }
+
+        );
+
+
+      }
+
+    );
+
+
+    /* =========================================================
+       INITIAL PAGE LOAD
+    ========================================================= */
+
+    setRevealState(
+      false
+    );
+
+
+    render();
+
+
+  </script>
+
+
+</body>
+
+</html>      --cyan: #2df5c5;
+
+      --red: #ff6b7a;
+
+      --border: rgba(110, 255, 168, 0.14);
+
+      --mono-font:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        "Liberation Mono",
+        "Courier New",
+        monospace;
+
+    }
+
+
+    /* =========================================================
+       GLOBAL RESET
+    ========================================================= */
+
+    * {
+
+      box-sizing: border-box;
+
+    }
+
+
+    html,
+    body {
+
+      margin: 0;
+
+      min-height: 100%;
+
+      background:
+
+        radial-gradient(
+          circle at top left,
+          rgba(46, 245, 197, 0.07),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at top right,
+          rgba(110, 255, 168, 0.09),
+          transparent 24%
+        ),
+
+        linear-gradient(
+          180deg,
+          #02040a,
+          #05080f 40%,
+          #04060a 100%
+        );
+
+      color: var(--text);
+
+      font-family: var(--mono-font);
+
+      overflow-x: hidden;
+
+    }
+
+
+    /* Hacker-style background grid */
+
+    body::before {
+
+      content: "";
+
+      position: fixed;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+
+        linear-gradient(
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px
+        ),
+
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px
+        );
+
+      background-size: 32px 32px;
+
+      opacity: 0.35;
+
+    }
+
+
+    /* =========================================================
+       MAIN PAGE CONTAINER
+    ========================================================= */
+
+    .wrap {
+
+      max-width: 1240px;
+
+      margin: 0 auto;
+
+      padding: 24px 16px 56px;
+
+    }
+
+
+    .shell {
+
+      border: 1px solid var(--border);
+
+      background:
+
+        linear-gradient(
+          180deg,
+          rgba(7, 12, 18, 0.92),
+          rgba(4, 8, 13, 0.97)
+        );
+
+      border-radius: 28px;
+
+      overflow: hidden;
+
+      box-shadow:
+
+        0 20px 60px rgba(0, 0, 0, 0.45);
+
+    }
+
+
+    /* =========================================================
+       TERMINAL TOP BAR
+    ========================================================= */
+
+    .topbar {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 14px 18px;
+
+      border-bottom: 1px solid var(--border);
+
+      background: rgba(255, 255, 255, 0.02);
+
+    }
+
+
+    .dots {
+
+      display: flex;
+
+      gap: 8px;
+
+      align-items: center;
+
+    }
+
+
+    .dot {
+
+      width: 10px;
+
+      height: 10px;
+
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.15);
+
+    }
+
+
+    .dot:nth-child(1) {
+
+      background: rgba(255, 107, 122, 0.55);
+
+    }
+
+
+    .dot:nth-child(2) {
+
+      background: rgba(255, 201, 87, 0.55);
+
+    }
+
+
+    .dot:nth-child(3) {
+
+      background: rgba(110, 255, 168, 0.55);
+
+    }
+
+
+    .status {
+
+      color: var(--muted);
+
+      font-size: 0.88rem;
+
+      letter-spacing: 0.04em;
+
+      text-transform: uppercase;
+
+      text-align: right;
+
+    }
+
+
+    /* =========================================================
+       HERO SECTION
+    ========================================================= */
+
+    .hero {
+
+      padding: 28px 20px 18px;
+
+    }
+
+
+    .card {
+
+      border: 1px solid var(--border);
+
+      background:
+
+        linear-gradient(
+          180deg,
+          rgba(10, 16, 24, 0.86),
+          rgba(7, 12, 18, 0.95)
+        );
+
+      border-radius: 22px;
+
+    }
+
+
+    .terminal {
+
+      padding: 28px;
+
+      position: relative;
+
+      overflow: hidden;
+
+    }
+
+
+    .terminal::after {
+
+      content: "";
+
+      position: absolute;
+
+      right: -90px;
+
+      bottom: -90px;
+
+      width: 240px;
+
+      height: 240px;
+
+      border-radius: 50%;
+
+      background:
+
+        radial-gradient(
+          circle,
+          rgba(110, 255, 168, 0.12),
+          transparent 65%
+        );
+
+      pointer-events: none;
+
+    }
+
+
+    .label {
+
+      color: var(--green);
+
+      font-size: 0.78rem;
+
+      letter-spacing: 0.22em;
+
+      text-transform: uppercase;
+
+      margin-bottom: 14px;
+
+    }
+
+
+    h1 {
+
+      margin: 0;
+
+      font-size: clamp(2.8rem, 7vw, 5.8rem);
+
+      line-height: 0.92;
+
+      letter-spacing: -0.08em;
+
+      text-transform: uppercase;
+
+      color: #dfffea;
+
+      text-shadow:
+
+        0 0 18px rgba(110, 255, 168, 0.13);
+
+    }
+
+
+    .subtitle {
+
+      margin: 18px 0 0;
+
+      max-width: 78ch;
+
+      font-size: 1rem;
+
+      line-height: 1.85;
+
+      color: #a6b9ad;
+
+    }
+
+
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    .actions {
+
+      margin-top: 22px;
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+    }
+
+
+    button {
+
+      border: 0;
+
+      cursor: pointer;
+
+      font-family: var(--mono-font);
+
+      font-weight: 800;
+
+      border-radius: 16px;
+
+      padding: 13px 16px;
+
+      transition:
+
+        transform 0.15s ease,
+
+        opacity 0.15s ease;
+
+    }
+
+
+    button:hover {
+
+      transform: translateY(-1px);
+
+    }
+
+
+    button:active {
+
+      transform: translateY(0);
+
+      opacity: 0.95;
+
+    }
+
+
+    .btn-primary {
+
+      color: #04100a;
+
+      background:
+
+        linear-gradient(
+          135deg,
+          var(--green),
+          var(--cyan)
+        );
+
+      box-shadow:
+
+        0 12px 28px rgba(45, 245, 197, 0.16);
+
+    }
+
+
+    .btn-ghost {
+
+      color: var(--text);
+
+      background: rgba(255, 255, 255, 0.03);
+
+      border: 1px solid var(--border);
+
+    }
+
+
+    /* =========================================================
+       CONTENT AREA
+    ========================================================= */
+
+    .content {
+
+      display: none;
+
+      padding: 4px 20px 24px;
+
+    }
+
+
+    /* =========================================================
+       FILTER BUTTONS
+    ========================================================= */
+
+    .filters {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-bottom: 14px;
+
+    }
+
+
+    .chip {
+
+      border: 1px solid var(--border);
+
+      background: rgba(255, 255, 255, 0.03);
+
+      color: var(--text);
+
+      padding: 10px 14px;
+
+      border-radius: 999px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+    }
+
+
+    .chip.active {
+
+      background:
+
+        linear-gradient(
+          135deg,
+          rgba(110, 255, 168, 0.22),
+          rgba(45, 245, 197, 0.12)
+        );
+
+      box-shadow:
+
+        inset 0 0 0 1px rgba(110, 255, 168, 0.16);
+
+    }
+
+
+    /* =========================================================
+       PROGRESS BAR
+    ========================================================= */
+
+    .progress {
+
+      margin-bottom: 18px;
+
+      padding: 16px 18px;
+
+      border-radius: 18px;
+
+      border: 1px solid var(--border);
+
+      background: rgba(255, 255, 255, 0.02);
+
+    }
+
+
+    .progress-head {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 12px;
+
+      margin-bottom: 10px;
+
+      color: #9cb3a4;
+
+      font-size: 0.92rem;
+
+    }
+
+
+    .bar {
+
+      height: 12px;
+
+      border-radius: 999px;
+
+      overflow: hidden;
+
+      background: rgba(255, 255, 255, 0.06);
+
+      border: 1px solid var(--border);
+
+    }
+
+
+    .bar span {
+
+      display: block;
+
+      height: 100%;
+
+      width: 0%;
+
+      background:
+
+        linear-gradient(
+          90deg,
+          var(--green),
+          var(--cyan)
+        );
+
+      transition: width 0.25s ease;
+
+    }
+
+
+    /* =========================================================
+       TASK LIST
+    ========================================================= */
+
+    .tasks {
+
+      display: grid;
+
+      gap: 14px;
+
+    }
+
+
+    .task {
+
+      padding: 16px;
+
+      display: grid;
+
       grid-template-columns: 180px 1fr;
 
       gap: 16px;
