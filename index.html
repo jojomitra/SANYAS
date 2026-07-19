@@ -17,7 +17,7 @@
 
 
     /* =========================================================
-       PAGE VARIABLES
+       BASIC PAGE SETUP
     ========================================================= */
 
     :root {
@@ -54,7 +54,7 @@
 
 
     /* =========================================================
-       RESET
+       GLOBAL RESET
     ========================================================= */
 
     * {
@@ -101,7 +101,7 @@
     }
 
 
-    /* Hacker-style grid background */
+    /* Hacker-style background grid */
 
     body::before {
 
@@ -134,7 +134,7 @@
 
 
     /* =========================================================
-       MAIN CONTAINER
+       MAIN PAGE CONTAINER
     ========================================================= */
 
     .wrap {
@@ -460,7 +460,7 @@
 
 
     /* =========================================================
-       TASK CONTENT
+       CONTENT AREA
     ========================================================= */
 
     .content {
@@ -526,7 +526,7 @@
 
 
     /* =========================================================
-       OVERALL PROGRESS
+       PROGRESS BAR
     ========================================================= */
 
     .progress {
@@ -638,14 +638,19 @@
 
 
     /* =========================================================
-       9:16 PORTRAIT IMAGE
+       TASK IMAGE
 
-       The image container itself is 9:16.
-
-       This means the container maintains the
-       same portrait shape as your images.
-
+       9:16 images are kept completely visible.
     ========================================================= */
+
+    .preview {
+
+      display: grid;
+
+      align-content: start;
+
+    }
+
 
     .imgbox {
 
@@ -669,17 +674,6 @@
       width: 100%;
 
       height: 100%;
-
-      /*
-         contain means:
-
-         SHOW THE ENTIRE IMAGE
-
-         Do not crop the top,
-         bottom,
-         left,
-         or right.
-      */
 
       object-fit: contain;
 
@@ -751,10 +745,20 @@
 
       flex-direction: column;
 
-      gap: 8px;
+      gap: 10px;
 
     }
 
+
+    /* =========================================================
+       AUTHENTIC TERMINAL TASK TITLE
+
+       This is NOT an input.
+
+       It has no box around it.
+
+       It cannot be edited directly.
+    ========================================================= */
 
     .tag {
 
@@ -766,39 +770,84 @@
 
       text-transform: uppercase;
 
+      opacity: 0.8;
+
     }
 
 
-    /* =========================================================
-       FIXED TASK TITLE
-
-       This is a div, not an input.
-
-       Therefore the title cannot be edited
-       directly after the task is created.
-    ========================================================= */
-
     .task-title {
 
-      width: 100%;
+      position: relative;
 
-      background: #081019;
+      padding-left: 22px;
 
-      color: var(--text);
+      color: #dfffea;
 
-      border: 1px solid rgba(110, 255, 168, 0.16);
+      font-size: clamp(1rem, 2vw, 1.25rem);
 
-      border-radius: 14px;
+      line-height: 1.65;
 
-      padding: 13px 14px;
+      font-weight: 700;
 
-      font-family: var(--mono-font);
+      letter-spacing: 0.015em;
 
-      font-size: 0.96rem;
+      text-shadow:
 
-      line-height: 1.5;
+        0 0 10px rgba(110, 255, 168, 0.10);
 
-      word-break: break-word;
+    }
+
+
+    /*
+       Terminal command prompt before the task.
+    */
+
+    .task-title::before {
+
+      content: ">";
+
+      position: absolute;
+
+      left: 0;
+
+      top: 0;
+
+      color: var(--green);
+
+      font-weight: 900;
+
+      text-shadow:
+
+        0 0 10px rgba(110, 255, 168, 0.55);
+
+    }
+
+
+    /*
+       Subtle terminal cursor line below title.
+    */
+
+    .task-title::after {
+
+      content: "";
+
+      display: block;
+
+      width: 42px;
+
+      height: 2px;
+
+      margin-top: 9px;
+
+      background:
+
+        linear-gradient(
+          90deg,
+          var(--green),
+          transparent
+        );
+
+      opacity: 0.75;
 
     }
 
@@ -900,7 +949,7 @@
 
 
     /* =========================================================
-       RESPONSIVE LAYOUT
+       MOBILE RESPONSIVENESS
     ========================================================= */
 
     @media (max-width: 1020px) {
@@ -912,11 +961,6 @@
 
       }
 
-
-      /*
-         On smaller screens the image
-         becomes centered and remains 9:16.
-      */
 
       .preview {
 
@@ -1110,7 +1154,7 @@
       >
 
 
-        <!-- FILTERS -->
+        <!-- FILTER BUTTONS -->
 
         <div class="filters">
 
@@ -1187,7 +1231,7 @@
         </div>
 
 
-        <!-- TASKS APPEAR HERE -->
+        <!-- TASKS -->
 
         <section
           class="tasks"
@@ -1243,146 +1287,94 @@
 
 
     /* =========================================================
-       LOCAL STORAGE
+       LOCAL STORAGE KEY
     ========================================================= */
 
     const STORAGE_KEY =
-
       "sanya_sanyas_hacker_list_v3";
 
 
     /* =========================================================
-       INITIAL TASKS
-
-       THIS IS WHERE YOU PUT YOUR TASKS
-       AND IMAGE PATHS.
-
-       Example repository structure:
-
-       SANYAS/
-       |
-       |-- index.html
-       |
-       |-- images/
-           |
-           |-- sunset.jpg
-           |-- coffee.jpg
-           |-- drive.jpg
-
-       Then write:
-
-       imagePath: "images/sunset.jpg"
-
+       YOUR INITIAL 6 TASKS
     ========================================================= */
-
 
     const starterTasks = [
 
 
       {
 
-
         id: crypto.randomUUID(),
 
+        title: "eat and rate all the bad cheesecakes in mumbai",
 
-        title: "Sunset date",
-
-
-        imagePath: "images/sunset.jpg",
-
+        imagePath: "images/IMG_7766.PNG",
 
         done: false
-
 
       },
 
 
       {
 
-
         id: crypto.randomUUID(),
 
+        title: "make you try the most authentic ramen in mumbai",
 
-        title: "Coffee or chai mission",
-
-
-        imagePath: "images/coffee.jpg",
-
+        imagePath: "images/IMG_7769.PNG",
 
         done: false
-
 
       },
 
 
       {
 
-
         id: crypto.randomUUID(),
 
+        title: "watch 'gori tere pyaar mein' together",
 
-        title: "Spontaneous drive",
-
-
-        imagePath: "images/drive.jpg",
-
+        imagePath: "images/IMG_7943.PNG",
 
         done: false
-
 
       },
 
 
       {
 
-
         id: crypto.randomUUID(),
 
+        title: "cook mutton palak gosht with jeera rice for you",
 
-        title: "One perfect meal",
-
-
-        imagePath: "images/meal.jpg",
-
+        imagePath: "images/IMG_7946.PNG",
 
         done: false
-
 
       },
 
 
       {
 
-
         id: crypto.randomUUID(),
 
+        title: "attend your theatre play and hoot for you",
 
-        title: "A photo we keep forever",
-
-
-        imagePath: "images/photo.jpg",
-
+        imagePath: "images/IMG_7947.PNG",
 
         done: false
-
 
       },
 
 
       {
 
-
         id: crypto.randomUUID(),
 
+        title: "teach you how to play fifa on ps5 as bellingham",
 
-        title: "Plan the next thing",
-
-
-        imagePath: "images/next.jpg",
-
+        imagePath: "images/sanyaahuja.jpg",
 
         done: false
-
 
       }
 
@@ -1391,7 +1383,7 @@
 
 
     /* =========================================================
-       HTML ELEMENTS
+       FIND HTML ELEMENTS
     ========================================================= */
 
     const els = {
@@ -1488,17 +1480,20 @@
        PAGE STATE
     ========================================================= */
 
-    let revealed = false;
+    let revealed =
+      false;
 
 
-    let filter = "all";
+    let filter =
+      "all";
 
 
-    let tasks = loadTasks();
+    let tasks =
+      loadTasks();
 
 
     /* =========================================================
-       LOAD SAVED TASKS
+       LOAD TASKS
     ========================================================= */
 
     function loadTasks() {
@@ -1585,7 +1580,7 @@
 
 
     /* =========================================================
-       SANYAS → SANYA'S
+       CHANGE FROM SANYAS TO SANYA'S
     ========================================================= */
 
     function setRevealState(
@@ -1593,29 +1588,27 @@
     ) {
 
 
-      revealed = nextState;
+      revealed =
+        nextState;
 
 
       if (revealed) {
 
 
         els.mainHeading.textContent =
-
           "SANYA's";
 
 
         els.mainSubtitle.textContent =
 
-          "The emerging Indian actor, theater artist, and model or should I call you as Raveena from your role in the web series Jamnapaar.";
+          "The emerging Indian actor, theater artist, and model or should I call you 'Raveena' from your role in the web series Jamnapaar. An autograph from you, and my ladoos are still pending...";
 
 
         els.toggleBtn.style.display =
-
           "none";
 
 
         els.resetBtn.style.display =
-
           "inline-block";
 
 
@@ -1625,7 +1618,6 @@
 
 
         els.contentArea.style.display =
-
           "block";
 
 
@@ -1636,7 +1628,6 @@
 
 
         els.mainHeading.textContent =
-
           "SANYAS";
 
 
@@ -1646,12 +1637,10 @@
 
 
         els.toggleBtn.style.display =
-
           "inline-block";
 
 
         els.resetBtn.style.display =
-
           "none";
 
 
@@ -1661,7 +1650,6 @@
 
 
         els.contentArea.style.display =
-
           "none";
 
 
@@ -1721,7 +1709,7 @@
 
 
     /* =========================================================
-       HTML ESCAPING
+       PROTECT TEXT INSERTED INTO HTML
     ========================================================= */
 
     function escapeHtml(
@@ -1761,14 +1749,13 @@
 
 
     /* =========================================================
-       RENDER EVERYTHING
+       RENDER TASKS AND PROGRESS
     ========================================================= */
 
     function render() {
 
 
       const total =
-
         tasks.length;
 
 
@@ -1778,13 +1765,15 @@
 
           function(task) {
 
-
             return task.done;
-
 
           }
 
         ).length;
+
+
+      const remaining =
+        total - done;
 
 
       const percentage =
@@ -1803,7 +1792,7 @@
 
         els.statusText.textContent =
 
-          `system: access granted // ${done}/${total} complete // ${total - done} pending`;
+          `system: access granted // ${done}/${total} complete // ${remaining} pending`;
 
 
       }
@@ -1824,7 +1813,8 @@
         filteredTasks();
 
 
-      els.tasks.innerHTML = "";
+      els.tasks.innerHTML =
+        "";
 
 
       if (
@@ -1835,7 +1825,6 @@
 
 
         els.emptyState.style.display =
-
           "block";
 
 
@@ -1846,7 +1835,6 @@
 
 
         els.emptyState.style.display =
-
           "none";
 
 
@@ -1865,7 +1853,8 @@
             );
 
 
-          card.className = "task";
+          card.className =
+            "task";
 
 
           let previewHTML;
@@ -1891,14 +1880,14 @@
                   task.title
                 )}"
 
-              >
+              />
 
 
               <div
 
                 class="placeholder"
 
-                style="display: none;"
+                style="display:none;"
 
               >
 
@@ -1965,18 +1954,21 @@
 
                   <span class="tag">
 
-                    task
+                    task // ${escapeHtml(
+                      task.id.slice(
+                        0,
+                        8
+                      )
+                    )}
 
                   </span>
 
 
                   <div class="task-title">
 
-
                     ${escapeHtml(
                       task.title
                     )}
-
 
                   </div>
 
@@ -1995,16 +1987,13 @@
                       type="checkbox"
 
                       ${
-
                         task.done
-
                           ? "checked"
-
                           : ""
 
                       }
 
-                    >
+                    />
 
 
                     done
@@ -2036,54 +2025,6 @@
 
 
           `;
-
-
-          const image =
-
-            card.querySelector(
-              ".preview img"
-            );
-
-
-          const placeholder =
-
-            card.querySelector(
-              ".placeholder"
-            );
-
-
-          if (image) {
-
-
-            image.addEventListener(
-
-              "error",
-
-              function() {
-
-
-                image.style.display =
-
-                  "none";
-
-
-                if (placeholder) {
-
-
-                  placeholder.style.display =
-
-                    "grid";
-
-
-                }
-
-
-              }
-
-            );
-
-
-          }
 
 
           const doneInput =
@@ -2178,7 +2119,7 @@
 
 
     /* =========================================================
-       ADD NEW TASK
+       ADD A NEW TASK
     ========================================================= */
 
     function addTask() {
@@ -2298,6 +2239,10 @@
     );
 
 
+    /* =========================================================
+       FILTER BUTTONS
+    ========================================================= */
+
     els.chips.forEach(
 
       function(chip) {
@@ -2353,7 +2298,7 @@
 
 
     /* =========================================================
-       START PAGE
+       INITIAL PAGE LOAD
     ========================================================= */
 
     setRevealState(
