@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>SANYAS // ACCESS TERMINAL</title>
 
+
   <style>
+
 
     /* =========================================================
        BASIC PAGE SETUP
     ========================================================= */
 
     :root {
+
       --background: #05080f;
+
       --panel: #080e16;
+
       --panel-light: #0b141e;
 
       --text: #d9fbe3;
+
       --muted: #7c9a8b;
 
       --green: #6effa8;
+
       --cyan: #2df5c5;
 
       --red: #ff6b7a;
@@ -36,6 +49,7 @@
         "Liberation Mono",
         "Courier New",
         monospace;
+
     }
 
 
@@ -44,16 +58,21 @@
     ========================================================= */
 
     * {
+
       box-sizing: border-box;
+
     }
 
 
     html,
     body {
+
       margin: 0;
+
       min-height: 100%;
 
       background:
+
         radial-gradient(
           circle at top left,
           rgba(46, 245, 197, 0.07),
@@ -78,12 +97,14 @@
       font-family: var(--mono-font);
 
       overflow-x: hidden;
+
     }
 
 
-    /* Subtle hacker-style grid in the background */
+    /* Hacker-style background grid */
 
     body::before {
+
       content: "";
 
       position: fixed;
@@ -93,6 +114,7 @@
       pointer-events: none;
 
       background:
+
         linear-gradient(
           rgba(255, 255, 255, 0.03) 1px,
           transparent 1px
@@ -107,6 +129,7 @@
       background-size: 32px 32px;
 
       opacity: 0.35;
+
     }
 
 
@@ -115,18 +138,22 @@
     ========================================================= */
 
     .wrap {
+
       max-width: 1240px;
 
       margin: 0 auto;
 
       padding: 24px 16px 56px;
+
     }
 
 
     .shell {
+
       border: 1px solid var(--border);
 
       background:
+
         linear-gradient(
           180deg,
           rgba(7, 12, 18, 0.92),
@@ -138,15 +165,18 @@
       overflow: hidden;
 
       box-shadow:
+
         0 20px 60px rgba(0, 0, 0, 0.45);
+
     }
 
 
     /* =========================================================
-       TOP TERMINAL BAR
+       TERMINAL TOP BAR
     ========================================================= */
 
     .topbar {
+
       display: flex;
 
       justify-content: space-between;
@@ -160,19 +190,23 @@
       border-bottom: 1px solid var(--border);
 
       background: rgba(255, 255, 255, 0.02);
+
     }
 
 
     .dots {
+
       display: flex;
 
       gap: 8px;
 
       align-items: center;
+
     }
 
 
     .dot {
+
       width: 10px;
 
       height: 10px;
@@ -180,25 +214,33 @@
       border-radius: 50%;
 
       background: rgba(255, 255, 255, 0.15);
+
     }
 
 
     .dot:nth-child(1) {
+
       background: rgba(255, 107, 122, 0.55);
+
     }
 
 
     .dot:nth-child(2) {
+
       background: rgba(255, 201, 87, 0.55);
+
     }
 
 
     .dot:nth-child(3) {
+
       background: rgba(110, 255, 168, 0.55);
+
     }
 
 
     .status {
+
       color: var(--muted);
 
       font-size: 0.88rem;
@@ -208,6 +250,7 @@
       text-transform: uppercase;
 
       text-align: right;
+
     }
 
 
@@ -216,14 +259,18 @@
     ========================================================= */
 
     .hero {
+
       padding: 28px 20px 18px;
+
     }
 
 
     .card {
+
       border: 1px solid var(--border);
 
       background:
+
         linear-gradient(
           180deg,
           rgba(10, 16, 24, 0.86),
@@ -231,19 +278,23 @@
         );
 
       border-radius: 22px;
+
     }
 
 
     .terminal {
+
       padding: 28px;
 
       position: relative;
 
       overflow: hidden;
+
     }
 
 
     .terminal::after {
+
       content: "";
 
       position: absolute;
@@ -259,6 +310,7 @@
       border-radius: 50%;
 
       background:
+
         radial-gradient(
           circle,
           rgba(110, 255, 168, 0.12),
@@ -266,10 +318,12 @@
         );
 
       pointer-events: none;
+
     }
 
 
     .label {
+
       color: var(--green);
 
       font-size: 0.78rem;
@@ -279,10 +333,12 @@
       text-transform: uppercase;
 
       margin-bottom: 14px;
+
     }
 
 
     h1 {
+
       margin: 0;
 
       font-size: clamp(2.8rem, 7vw, 5.8rem);
@@ -296,11 +352,14 @@
       color: #dfffea;
 
       text-shadow:
+
         0 0 18px rgba(110, 255, 168, 0.13);
+
     }
 
 
     .subtitle {
+
       margin: 18px 0 0;
 
       max-width: 78ch;
@@ -310,6 +369,7 @@
       line-height: 1.85;
 
       color: #a6b9ad;
+
     }
 
 
@@ -318,6 +378,7 @@
     ========================================================= */
 
     .actions {
+
       margin-top: 22px;
 
       display: flex;
@@ -325,10 +386,12 @@
       flex-wrap: wrap;
 
       gap: 12px;
+
     }
 
 
     button {
+
       border: 0;
 
       cursor: pointer;
@@ -342,27 +405,36 @@
       padding: 13px 16px;
 
       transition:
+
         transform 0.15s ease,
+
         opacity 0.15s ease;
+
     }
 
 
     button:hover {
+
       transform: translateY(-1px);
+
     }
 
 
     button:active {
+
       transform: translateY(0);
 
       opacity: 0.95;
+
     }
 
 
     .btn-primary {
+
       color: #04100a;
 
       background:
+
         linear-gradient(
           135deg,
           var(--green),
@@ -370,16 +442,20 @@
         );
 
       box-shadow:
+
         0 12px 28px rgba(45, 245, 197, 0.16);
+
     }
 
 
     .btn-ghost {
+
       color: var(--text);
 
       background: rgba(255, 255, 255, 0.03);
 
       border: 1px solid var(--border);
+
     }
 
 
@@ -388,9 +464,11 @@
     ========================================================= */
 
     .content {
+
       display: none;
 
       padding: 4px 20px 24px;
+
     }
 
 
@@ -399,6 +477,7 @@
     ========================================================= */
 
     .filters {
+
       display: flex;
 
       flex-wrap: wrap;
@@ -406,10 +485,12 @@
       gap: 10px;
 
       margin-bottom: 14px;
+
     }
 
 
     .chip {
+
       border: 1px solid var(--border);
 
       background: rgba(255, 255, 255, 0.03);
@@ -423,11 +504,14 @@
       font-weight: 800;
 
       cursor: pointer;
+
     }
 
 
     .chip.active {
+
       background:
+
         linear-gradient(
           135deg,
           rgba(110, 255, 168, 0.22),
@@ -435,7 +519,9 @@
         );
 
       box-shadow:
+
         inset 0 0 0 1px rgba(110, 255, 168, 0.16);
+
     }
 
 
@@ -444,6 +530,7 @@
     ========================================================= */
 
     .progress {
+
       margin-bottom: 18px;
 
       padding: 16px 18px;
@@ -453,10 +540,12 @@
       border: 1px solid var(--border);
 
       background: rgba(255, 255, 255, 0.02);
+
     }
 
 
     .progress-head {
+
       display: flex;
 
       justify-content: space-between;
@@ -470,10 +559,12 @@
       color: #9cb3a4;
 
       font-size: 0.92rem;
+
     }
 
 
     .bar {
+
       height: 12px;
 
       border-radius: 999px;
@@ -483,10 +574,12 @@
       background: rgba(255, 255, 255, 0.06);
 
       border: 1px solid var(--border);
+
     }
 
 
     .bar span {
+
       display: block;
 
       height: 100%;
@@ -494,6 +587,7 @@
       width: 0%;
 
       background:
+
         linear-gradient(
           90deg,
           var(--green),
@@ -501,6 +595,7 @@
         );
 
       transition: width 0.25s ease;
+
     }
 
 
@@ -509,13 +604,16 @@
     ========================================================= */
 
     .tasks {
+
       display: grid;
 
       gap: 14px;
+
     }
 
 
     .task {
+
       padding: 16px;
 
       display: grid;
@@ -529,11 +627,13 @@
       border: 1px solid var(--border);
 
       background:
+
         linear-gradient(
           180deg,
           rgba(255, 255, 255, 0.03),
           rgba(255, 255, 255, 0.015)
         );
+
     }
 
 
@@ -542,13 +642,16 @@
     ========================================================= */
 
     .preview {
+
       display: grid;
 
       align-content: start;
+
     }
 
 
     .imgbox {
+
       width: 100%;
 
       height: 140px;
@@ -560,10 +663,12 @@
       border: 1px solid var(--border);
 
       background: #071019;
+
     }
 
 
     .preview img {
+
       width: 100%;
 
       height: 100%;
@@ -571,10 +676,12 @@
       object-fit: cover;
 
       display: block;
+
     }
 
 
     .placeholder {
+
       width: 100%;
 
       height: 140px;
@@ -594,6 +701,7 @@
       font-size: 2rem;
 
       font-weight: 900;
+
     }
 
 
@@ -602,15 +710,18 @@
     ========================================================= */
 
     .body {
+
       display: flex;
 
       flex-direction: column;
 
       gap: 12px;
+
     }
 
 
     .task-top {
+
       display: flex;
 
       justify-content: space-between;
@@ -620,10 +731,12 @@
       gap: 12px;
 
       flex-wrap: wrap;
+
     }
 
 
     .title-wrap {
+
       flex: 1;
 
       min-width: 240px;
@@ -633,10 +746,12 @@
       flex-direction: column;
 
       gap: 8px;
+
     }
 
 
     .tag {
+
       color: var(--green);
 
       font-size: 0.72rem;
@@ -644,10 +759,24 @@
       letter-spacing: 0.2em;
 
       text-transform: uppercase;
+
     }
 
 
-    input[type="text"] {
+    /*
+       FIXED TASK TITLE
+
+       The task title is displayed as normal text.
+
+       It is NOT an input box.
+
+       Therefore, once a task is created,
+       its title cannot be edited directly
+       on the webpage.
+    */
+
+    .task-title {
+
       width: 100%;
 
       background: #081019;
@@ -660,23 +789,19 @@
 
       padding: 13px 14px;
 
-      outline: none;
-
       font-family: var(--mono-font);
 
       font-size: 0.96rem;
-    }
 
+      line-height: 1.5;
 
-    input[type="text"]:focus {
-      border-color: var(--green);
+      word-break: break-word;
 
-      box-shadow:
-        0 0 0 2px rgba(110, 255, 168, 0.08);
     }
 
 
     .task-controls {
+
       display: flex;
 
       align-items: center;
@@ -684,10 +809,12 @@
       gap: 8px;
 
       flex-wrap: wrap;
+
     }
 
 
     .done-wrap {
+
       display: inline-flex;
 
       align-items: center;
@@ -705,24 +832,29 @@
       font-weight: 800;
 
       user-select: none;
+
     }
 
 
     .done-wrap input {
+
       width: 18px;
 
       height: 18px;
 
       accent-color: var(--green);
+
     }
 
 
     .delete {
+
       border: 1px solid rgba(255, 107, 122, 0.24);
 
       background: rgba(255, 107, 122, 0.10);
 
       color: #ffb4bc;
+
     }
 
 
@@ -731,6 +863,7 @@
     ========================================================= */
 
     .add-wrap {
+
       margin-top: 16px;
 
       padding-top: 4px;
@@ -738,6 +871,7 @@
       display: flex;
 
       justify-content: flex-end;
+
     }
 
 
@@ -746,6 +880,7 @@
     ========================================================= */
 
     .empty {
+
       padding: 26px;
 
       border: 1px dashed var(--border);
@@ -757,6 +892,7 @@
       text-align: center;
 
       background: rgba(255, 255, 255, 0.02);
+
     }
 
 
@@ -767,7 +903,9 @@
     @media (max-width: 1020px) {
 
       .task {
+
         grid-template-columns: 1fr;
+
       }
 
     }
@@ -776,39 +914,53 @@
     @media (max-width: 600px) {
 
       .topbar {
+
         align-items: flex-start;
 
         flex-direction: column;
+
       }
 
 
       .status {
+
         text-align: left;
+
       }
 
 
       .terminal {
+
         padding: 22px;
+
       }
 
 
       .task-controls {
+
         width: 100%;
+
       }
 
 
       .done-wrap {
+
         flex: 1;
+
       }
 
 
       .delete {
+
         flex: 1;
+
       }
 
     }
 
+
   </style>
+
 </head>
 
 
@@ -830,6 +982,7 @@
 
       <div class="topbar">
 
+
         <div class="dots">
 
           <span class="dot"></span>
@@ -845,8 +998,11 @@
           class="status"
           id="statusText"
         >
+
           system: locked // awaiting override
+
         </div>
+
 
       </div>
 
@@ -857,15 +1013,21 @@
 
       <section class="hero">
 
+
         <div class="card terminal">
 
+
           <div class="label">
+
             restricted entry
+
           </div>
 
 
           <h1 id="mainHeading">
+
             SANYAS
+
           </h1>
 
 
@@ -873,19 +1035,24 @@
             class="subtitle"
             id="mainSubtitle"
           >
+
             Sanyas (or Sannyasa) is the final, ultimate stage of life, dedicated entirely to spiritual liberation,
             renunciation of material desires, and selfless service. It signifies inner freedom, detachment from societal
             expectations, and an undivided focus on awakening.
+
           </p>
 
 
           <div class="actions">
 
+
             <button
               class="btn-primary"
               id="toggleBtn"
             >
+
               initiate override
+
             </button>
 
 
@@ -894,21 +1061,23 @@
               id="resetBtn"
               style="display: none;"
             >
+
               rollback
+
             </button>
+
 
           </div>
 
+
         </div>
+
 
       </section>
 
 
       <!-- =====================================================
            TASK CONTENT
-
-           This section is hidden until the user clicks
-           "initiate override".
       ===================================================== -->
 
       <section
@@ -923,11 +1092,14 @@
 
         <div class="filters">
 
+
           <button
             class="chip active"
             data-filter="all"
           >
+
             ALL
+
           </button>
 
 
@@ -935,7 +1107,9 @@
             class="chip"
             data-filter="active"
           >
+
             ACTIVE
+
           </button>
 
 
@@ -943,8 +1117,11 @@
             class="chip"
             data-filter="done"
           >
+
             DONE
+
           </button>
+
 
         </div>
 
@@ -955,33 +1132,43 @@
 
         <div class="progress">
 
+
           <div class="progress-head">
 
+
             <span>
+
               overall progress
+
             </span>
 
 
             <strong id="progressText">
+
               0%
+
             </strong>
+
 
           </div>
 
 
           <div class="bar">
 
+
             <span
               id="progressBar"
             ></span>
 
+
           </div>
+
 
         </div>
 
 
         <!-- =================================================
-             TASKS ARE GENERATED HERE BY JAVASCRIPT
+             TASKS ARE CREATED HERE BY JAVASCRIPT
         ================================================= -->
 
         <section
@@ -999,30 +1186,37 @@
           id="emptyState"
           style="display: none;"
         >
+
           No tasks in this view. Add one below.
+
         </div>
 
 
         <!-- =================================================
              ADD TASK BUTTON
-
-             This is deliberately BELOW the existing tasks.
         ================================================= -->
 
         <div class="add-wrap">
+
 
           <button
             class="btn-primary"
             id="addTaskBtn"
           >
+
             add task
+
           </button>
+
 
         </div>
 
+
       </section>
 
+
     </div>
+
 
   </div>
 
@@ -1036,11 +1230,6 @@
 
     /* =========================================================
        LOCAL STORAGE KEY
-
-       The browser saves task completion states here.
-
-       This means when you tick a task as complete, it stays
-       ticked on that browser/device.
     ========================================================= */
 
     const STORAGE_KEY =
@@ -1050,27 +1239,9 @@
     /* =========================================================
        YOUR INITIAL 6 TASKS
 
-       THIS IS THE MOST IMPORTANT SECTION FOR YOU TO EDIT.
+       CHANGE THE TITLES AND IMAGE PATHS HERE.
 
-       You can change:
-
-       title:
-       The name of the thing you want to do together.
-
-       imagePath:
-       The path to the image inside your GitHub repository.
-
-       done:
-       false means incomplete.
-       true means already completed.
-
-       =========================================================
-
-       EXAMPLE:
-
-       imagePath: "images/sunset.jpg"
-
-       If your repository looks like this:
+       Example repository:
 
        SANYAS/
        |
@@ -1079,8 +1250,9 @@
        |-- images/
            |
            |-- sunset.jpg
+           |-- coffee.jpg
 
-       Then the correct path is:
+       Then use:
 
        imagePath: "images/sunset.jpg"
 
@@ -1089,70 +1261,84 @@
 
     const starterTasks = [
 
+
       {
+
         id: crypto.randomUUID(),
 
-        title: "Sunset date",
+        title: "eat and rate all the bad cheesecakes in mumbai",
 
-        imagePath: "images/sunset.jpg",
+        imagePath: "images/IMG_7766.PNG",
 
         done: false
+
       },
 
 
       {
+
         id: crypto.randomUUID(),
 
-        title: "Coffee or chai mission",
+        title: "make you try the most authentic ramen in mumbai",
 
-        imagePath: "images/coffee.jpg",
+        imagePath: "images/IMG_7769.PNG",
 
         done: false
+
       },
 
 
       {
+
         id: crypto.randomUUID(),
 
-        title: "Spontaneous drive",
+        title: "watch 'gori tere pyaar mein' together",
 
-        imagePath: "images/drive.jpg",
+        imagePath: "images/IMG_7943.PNG",
 
         done: false
+
       },
 
 
       {
+
         id: crypto.randomUUID(),
 
-        title: "One perfect meal",
+        title: "cook mutton palak gosht with jeera rice for you",
 
-        imagePath: "images/meal.jpg",
+        imagePath: "images/IMG_7946.PNG",
 
         done: false
+
       },
 
 
       {
+
         id: crypto.randomUUID(),
 
-        title: "A photo we keep forever",
+        title: "attend your theatre play and hoot for you",
 
-        imagePath: "images/photo.jpg",
+        imagePath: "images/IMG_7947.PNG",
 
         done: false
+
       },
 
 
       {
+
         id: crypto.randomUUID(),
 
-        title: "Plan the next thing",
+        title: "teach you how to play fifa on ps5 as bellingham",
 
-        imagePath: "images/next.jpg",
+        imagePath: "images/sanyaahuja.jpg",
 
         done: false
+
       }
+
 
     ];
 
@@ -1163,41 +1349,90 @@
 
     const els = {
 
+
       statusText:
-        document.getElementById("statusText"),
+
+        document.getElementById(
+          "statusText"
+        ),
+
 
       mainHeading:
-        document.getElementById("mainHeading"),
+
+        document.getElementById(
+          "mainHeading"
+        ),
+
 
       mainSubtitle:
-        document.getElementById("mainSubtitle"),
+
+        document.getElementById(
+          "mainSubtitle"
+        ),
+
 
       toggleBtn:
-        document.getElementById("toggleBtn"),
+
+        document.getElementById(
+          "toggleBtn"
+        ),
+
 
       resetBtn:
-        document.getElementById("resetBtn"),
+
+        document.getElementById(
+          "resetBtn"
+        ),
+
 
       contentArea:
-        document.getElementById("contentArea"),
+
+        document.getElementById(
+          "contentArea"
+        ),
+
 
       progressText:
-        document.getElementById("progressText"),
+
+        document.getElementById(
+          "progressText"
+        ),
+
 
       progressBar:
-        document.getElementById("progressBar"),
+
+        document.getElementById(
+          "progressBar"
+        ),
+
 
       tasks:
-        document.getElementById("tasks"),
+
+        document.getElementById(
+          "tasks"
+        ),
+
 
       emptyState:
-        document.getElementById("emptyState"),
+
+        document.getElementById(
+          "emptyState"
+        ),
+
 
       addTaskBtn:
-        document.getElementById("addTaskBtn"),
+
+        document.getElementById(
+          "addTaskBtn"
+        ),
+
 
       chips:
-        document.querySelectorAll(".chip")
+
+        document.querySelectorAll(
+          ".chip"
+        )
+
 
     };
 
@@ -1222,40 +1457,62 @@
 
     function loadTasks() {
 
+
       try {
 
+
         const saved =
-          localStorage.getItem(STORAGE_KEY);
+
+          localStorage.getItem(
+            STORAGE_KEY
+          );
 
 
         if (!saved) {
 
+
           return starterTasks;
+
 
         }
 
 
         const parsed =
-          JSON.parse(saved);
+
+          JSON.parse(
+            saved
+          );
 
 
-        if (Array.isArray(parsed)) {
+        if (
+
+          Array.isArray(
+            parsed
+          )
+
+        ) {
+
 
           return parsed;
+
 
         }
 
 
         return starterTasks;
+
 
       }
 
 
       catch (error) {
 
+
         return starterTasks;
 
+
       }
+
 
     }
 
@@ -1266,13 +1523,17 @@
 
     function saveTasks() {
 
+
       localStorage.setItem(
 
         STORAGE_KEY,
 
-        JSON.stringify(tasks)
+        JSON.stringify(
+          tasks
+        )
 
       );
+
 
     }
 
@@ -1281,7 +1542,10 @@
        CHANGE FROM SANYAS TO SANYA'S
     ========================================================= */
 
-    function setRevealState(nextState) {
+    function setRevealState(
+      nextState
+    ) {
+
 
       revealed =
         nextState;
@@ -1299,6 +1563,7 @@
         /* Change description */
 
         els.mainSubtitle.textContent =
+
           "The emerging Indian actor, theater artist, and model or should I call you as Raveena from your role in the web series Jamnapaar.";
 
 
@@ -1317,6 +1582,7 @@
         /* Update terminal status */
 
         els.statusText.textContent =
+
           "system: access granted // identity override applied";
 
 
@@ -1324,6 +1590,7 @@
 
         els.contentArea.style.display =
           "block";
+
 
       }
 
@@ -1340,6 +1607,7 @@
         /* Return original description */
 
         els.mainSubtitle.textContent =
+
           "Sanyas (or Sannyasa) is the final, ultimate stage of life, dedicated entirely to spiritual liberation, renunciation of material desires, and selfless service. It signifies inner freedom, detachment from societal expectations, and an undivided focus on awakening.";
 
 
@@ -1358,6 +1626,7 @@
         /* Lock status */
 
         els.statusText.textContent =
+
           "system: locked // awaiting override";
 
 
@@ -1366,7 +1635,9 @@
         els.contentArea.style.display =
           "none";
 
+
       }
+
 
     }
 
@@ -1383,25 +1654,39 @@
         function(task) {
 
 
-          if (filter === "active") {
+          if (
+
+            filter === "active"
+
+          ) {
+
 
             return !task.done;
+
 
           }
 
 
-          if (filter === "done") {
+          if (
+
+            filter === "done"
+
+          ) {
+
 
             return task.done;
+
 
           }
 
 
           return true;
 
+
         }
 
       );
+
 
     }
 
@@ -1410,19 +1695,38 @@
        PROTECT TEXT INSERTED INTO HTML
     ========================================================= */
 
-    function escapeHtml(str) {
+    function escapeHtml(
+      str
+    ) {
+
 
       return String(str)
 
-        .replaceAll("&", "&amp;")
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
 
-        .replaceAll("<", "&lt;")
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
 
-        .replaceAll(">", "&gt;")
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
 
-        .replaceAll('"', "&quot;")
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
 
-        .replaceAll("'", "&#39;");
+        .replaceAll(
+          "'",
+          "&#39;"
+        );
+
 
     }
 
@@ -1439,6 +1743,7 @@
 
 
       const done =
+
         tasks.filter(
 
           function(task) {
@@ -1455,9 +1760,12 @@
 
 
       const percentage =
+
         total
 
-          ? Math.round((done / total) * 100)
+          ? Math.round(
+              (done / total) * 100
+            )
 
           : 0;
 
@@ -1466,8 +1774,11 @@
 
       if (revealed) {
 
+
         els.statusText.textContent =
+
           `system: access granted // ${done}/${total} complete // ${remaining} pending`;
+
 
       }
 
@@ -1475,46 +1786,57 @@
       /* Update progress percentage */
 
       els.progressText.textContent =
+
         `${percentage}%`;
 
 
       /* Update progress bar */
 
       els.progressBar.style.width =
+
         `${percentage}%`;
 
 
-      /* Find tasks for current filter */
+      /* Get tasks matching the selected filter */
 
       const visibleTasks =
+
         filteredTasks();
 
 
-      /* Clear current task list */
+      /* Clear current tasks */
 
       els.tasks.innerHTML =
         "";
 
 
-      /* Show empty state if necessary */
+      /* Show or hide empty state */
 
-      if (visibleTasks.length === 0) {
+      if (
+
+        visibleTasks.length === 0
+
+      ) {
+
 
         els.emptyState.style.display =
           "block";
+
 
       }
 
 
       else {
 
+
         els.emptyState.style.display =
           "none";
+
 
       }
 
 
-      /* Create each task */
+      /* Create each task card */
 
       visibleTasks.forEach(
 
@@ -1522,7 +1844,10 @@
 
 
           const card =
-            document.createElement("article");
+
+            document.createElement(
+              "article"
+            );
 
 
           card.className =
@@ -1530,26 +1855,38 @@
 
 
           /*
-             If the task has an image path,
+             IMAGE DISPLAY
+
+             If an imagePath exists,
              display the image.
 
-             If no image path exists,
-             display the IMG placeholder.
+             If the image fails to load,
+             display NO PREVIEW.
           */
+
 
           let previewHTML;
 
 
-          if (task.imagePath) {
+          if (
+
+            task.imagePath
+
+          ) {
 
 
             previewHTML = `
 
+
               <img
 
-                src="${escapeHtml(task.imagePath)}"
+                src="${escapeHtml(
+                  task.imagePath
+                )}"
 
-                alt="${escapeHtml(task.title)}"
+                alt="${escapeHtml(
+                  task.title
+                )}"
 
                 onerror="
 
@@ -1574,7 +1911,9 @@
 
               </div>
 
+
             `;
+
 
           }
 
@@ -1584,39 +1923,63 @@
 
             previewHTML = `
 
-              <div class="placeholder">
+
+              <div
+
+                class="placeholder"
+
+              >
 
                 IMG
 
               </div>
 
+
             `;
+
 
           }
 
 
-          /* Create task HTML */
+          /*
+             IMPORTANT:
+
+             The task title is now displayed
+             as a normal div.
+
+             It is NOT an input box.
+
+             Therefore, the title cannot be edited
+             directly on the webpage.
+          */
+
 
           card.innerHTML = `
 
 
             <div class="preview">
 
+
               <div class="imgbox">
+
 
                 ${previewHTML}
 
+
               </div>
+
 
             </div>
 
 
             <div class="body">
 
+
               <div class="task-top">
 
 
                 <div class="title-wrap">
+
 
                   <span class="tag">
 
@@ -1625,13 +1988,14 @@
                   </span>
 
 
-                  <input
+                  <div class="task-title">
 
-                    type="text"
+                    ${escapeHtml(
+                      task.title
+                    )}
 
-                    value="${escapeHtml(task.title)}"
+                  </div>
 
-                  />
 
                 </div>
 
@@ -1641,15 +2005,23 @@
 
                   <label class="done-wrap">
 
+
                     <input
 
                       type="checkbox"
 
-                      ${task.done ? "checked" : ""}
+                      ${
+                        task.done
+                          ? "checked"
+                          : ""
+
+                      }
 
                     />
 
+
                     done
+
 
                   </label>
 
@@ -1672,51 +2044,36 @@
 
               </div>
 
+
             </div>
+
 
           `;
 
 
-          /* Get task controls */
-
-          const titleInput =
-            card.querySelector(
-              ".title-wrap input"
-            );
-
+          /* Get checkbox */
 
           const doneInput =
+
             card.querySelector(
+
               ".done-wrap input"
+
             );
 
+
+          /* Get delete button */
 
           const deleteButton =
+
             card.querySelector(
+
               ".delete"
+
             );
 
 
-          /* Change task title */
-
-          titleInput.addEventListener(
-
-            "input",
-
-            function(event) {
-
-              task.title =
-                event.target.value;
-
-
-              saveTasks();
-
-            }
-
-          );
-
-
-          /* Tick / untick task */
+          /* Mark task as done */
 
           doneInput.addEventListener(
 
@@ -1724,7 +2081,9 @@
 
             function(event) {
 
+
               task.done =
+
                 event.target.checked;
 
 
@@ -1732,6 +2091,7 @@
 
 
               render();
+
 
             }
 
@@ -1748,11 +2108,18 @@
 
 
               tasks =
+
                 tasks.filter(
 
                   function(item) {
 
-                    return item.id !== task.id;
+
+                    return (
+
+                      item.id !== task.id
+
+                    );
+
 
                   }
 
@@ -1764,18 +2131,23 @@
 
               render();
 
+
             }
 
           );
 
 
-          /* Add task card to page */
+          /* Add card to page */
 
-          els.tasks.appendChild(card);
+          els.tasks.appendChild(
+            card
+          );
+
 
         }
 
       );
+
 
     }
 
@@ -1788,6 +2160,7 @@
 
 
       const title =
+
         prompt(
 
           "Enter a new task name:"
@@ -1803,27 +2176,45 @@
 
       ) {
 
+
         return;
+
 
       }
 
 
       tasks.push({
 
+
         id:
+
           crypto.randomUUID(),
 
 
         title:
+
           title.trim(),
 
 
+        /*
+           New tasks do not have an image
+           initially.
+
+           You can later add an image by
+           editing the task data in the code.
+        */
+
         imagePath:
+
+
           "",
 
 
         done:
+
+
           false
+
 
       });
 
@@ -1832,6 +2223,7 @@
 
 
       render();
+
 
     }
 
@@ -1849,7 +2241,11 @@
 
       function() {
 
-        setRevealState(true);
+
+        setRevealState(
+          true
+        );
+
 
       }
 
@@ -1864,14 +2260,18 @@
 
       function() {
 
-        setRevealState(false);
+
+        setRevealState(
+          false
+        );
+
 
       }
 
     );
 
 
-    /* Add task */
+    /* ADD TASK */
 
     els.addTaskBtn.addEventListener(
 
@@ -1879,14 +2279,16 @@
 
       function() {
 
+
         addTask();
+
 
       }
 
     );
 
 
-    /* Filter buttons */
+    /* FILTER BUTTONS */
 
     els.chips.forEach(
 
@@ -1900,15 +2302,19 @@
           function() {
 
 
-            /* Remove active from all filters */
+            /* Remove active state */
 
             els.chips.forEach(
 
               function(otherChip) {
 
+
                 otherChip.classList.remove(
+
                   "active"
+
                 );
+
 
               }
 
@@ -1918,13 +2324,16 @@
             /* Activate clicked filter */
 
             chip.classList.add(
+
               "active"
+
             );
 
 
-            /* Update filter */
+            /* Change filter */
 
             filter =
+
               chip.dataset.filter;
 
 
@@ -1932,9 +2341,11 @@
 
             render();
 
+
           }
 
         );
+
 
       }
 
@@ -1945,7 +2356,9 @@
        INITIAL PAGE LOAD
     ========================================================= */
 
-    setRevealState(false);
+    setRevealState(
+      false
+    );
 
 
     render();
@@ -1953,5 +2366,7 @@
 
   </script>
 
+
 </body>
+
 </html>
